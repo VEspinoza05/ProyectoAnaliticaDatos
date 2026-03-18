@@ -1,2 +1,7 @@
 # ProyectoAnaliticaDatos
-Repositorio pra la clase de proyecto de analítica de datos
+Repositorio para la clase de proyecto de analítica de datos
+
+# Integrantes
+- Vladimir Espinoza
+-
+- 
