@@ -211,7 +211,7 @@ Diseñar un modelo analítico basado en un Data Warehouse que permita analizar e
 
 ---
 
-# 7. Referencias APA
+# 7. Referencias
 
 ## H1 — Visualización de videos y finalización
 
