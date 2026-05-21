@@ -1,4 +1,4 @@
-# ProyectoAnaliticaDatos
+# Proyecto de Analitica de Datos
 Repositorio para la clase de proyecto de analítica de datos
 
 # Integrantes
