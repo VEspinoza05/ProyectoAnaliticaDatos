@@ -1,5 +1,4 @@
 # Estudio de Caso: Analítica de Datos en la Plataforma Udemy
-
 ---
 
 # 1. Introducción y Contexto
