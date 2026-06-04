@@ -132,7 +132,7 @@ namespace Operations.SyntheticDataGenerator
 
             // ✅ CORRECCIÓN CRÍTICA: Usar SimpleGet + filtro Activo
             _areas = new Dim_Area_Psicoemocional()
-                .SimpleGet<Dim_Area_Psicoemocional>()
+                .Simpl eGet<Dim_Area_Psicoemocional>()
                 .Where(a => a.Activo == true)
                 .ToList();
 
