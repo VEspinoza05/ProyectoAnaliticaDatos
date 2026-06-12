@@ -12,22 +12,18 @@ namespace ETLService.Controllers
     [Route("api/[controller]/[action]")]
     public class ApiAnaliticController : ControllerBase
     {
+        private readonly DimEstudianteOperation _operation;
+
+        public ApiAnaliticController(DimEstudianteOperation operation)
+        {
+            _operation = operation;
+        }
+
         [HttpGet]
-        public ActionResult Absentismo(DateTime desde, DateTime hasta)
+        public async Task<IActionResult> GetAllAsync()
         {
-            return Ok(AnaliticAbsentismoOperation.GetByPeriodo(desde, hasta));
-        }
-
-        [HttpPost]
-        public ActionResult Absentismo(DataAnaliticRequest request)
-        {
-            return Ok(AnaliticAbsentismoOperation.GetByPeriodo(request));
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> AntiguedadBienestar(DataAnaliticRequest request)
-        {
-            return Ok(await AnaliticAntiguedadBienestarOperation.GetByPeriodo(request));
+            var data = await _operation.getStudents();
+            return Ok(data);
         }
     }
 }
