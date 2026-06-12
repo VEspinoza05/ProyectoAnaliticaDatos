@@ -1081,3 +1081,861 @@ The statement has been terminated.
    at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in d:\repos\NETCORE\ETLService\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
    at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in d:\repos\NETCORE\ETLService\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
    at APPCORE.EntityClass.Save(Boolean fullInsert) in d:\repos\NETCORE\ETLService\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 10:07:38 AM] ERROR: Max retries reached. Operation failed.: Incorrect syntax near the keyword 'FROM'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:07:38 AM] Transaction failed and connection restarted.: Incorrect syntax near the keyword 'FROM'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:07:38 AM] Transaction failed and connection restarted.: Incorrect syntax near the keyword 'FROM'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 286
+   at APPCORE.BDCore.Abstracts.WDataMapper.BuildTable(EntityClass Inst, String& CondSQL, Boolean isSimpleFind) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 560
+[12-Jun-26 10:07:38 AM] ERROR: BuildTable 
+
+ Dim_Area_Psicoemocional 
+
+  
+ SELECT   FROM dbo.Dim_Area_Psicoemocional as OAB_H_V_M     ORDER BY Id_Curso DESC: Incorrect syntax near the keyword 'FROM'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 286
+   at APPCORE.BDCore.Abstracts.WDataMapper.BuildTable(EntityClass Inst, String& CondSQL, Boolean isSimpleFind) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 560
+[12-Jun-26 10:26:28 AM] ERROR: Max retries reached. Operation failed.: Invalid column name 'Id_Curso'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:26:28 AM] Transaction failed and connection restarted.: Invalid column name 'Id_Curso'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:26:28 AM] Transaction failed and connection restarted.: Invalid column name 'Id_Curso'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 286
+   at APPCORE.BDCore.Abstracts.WDataMapper.BuildTable(EntityClass Inst, String& CondSQL, Boolean isSimpleFind) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 560
+[12-Jun-26 10:26:28 AM] ERROR: BuildTable 
+
+ Dim_Curso 
+
+  
+ SELECT  Titulo,Categoria,Nivel,Cantidad_Lecciones FROM dbo.Dim_Curso as YSS_V_Q_U     ORDER BY Id_Curso DESC: Invalid column name 'Id_Curso'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at APPCORE.GDatosAbstract.<>c__DisplayClass35_0.<TraerDatosSQL>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 294
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.TraerDatosSQL(String queryString, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 286
+   at APPCORE.BDCore.Abstracts.WDataMapper.BuildTable(EntityClass Inst, String& CondSQL, Boolean isSimpleFind) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 560
+[12-Jun-26 10:33:34 AM] ERROR: Max retries reached. Operation failed.: Cannot insert the value NULL into column 'id_curso', table 'DW_Udemy.dbo.dim_curso'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:33:34 AM] Transaction failed and connection restarted.: Cannot insert the value NULL into column 'id_curso', table 'DW_Udemy.dbo.dim_curso'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:33:34 AM] ERROR: Save entity: Cannot insert the value NULL into column 'id_curso', table 'DW_Udemy.dbo.dim_curso'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 10:39:33 AM] ERROR: Max retries reached. Operation failed.: Cannot insert the value NULL into column 'id_estudiante', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:39:33 AM] Transaction failed and connection restarted.: Cannot insert the value NULL into column 'id_estudiante', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:39:33 AM] ERROR: Save entity: Cannot insert the value NULL into column 'id_estudiante', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 10:40:07 AM] ERROR: Max retries reached. Operation failed.: Cannot insert the value NULL into column 'id_estudiante', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:40:07 AM] Transaction failed and connection restarted.: Cannot insert the value NULL into column 'id_estudiante', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:40:07 AM] ERROR: Save entity: Cannot insert the value NULL into column 'id_estudiante', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 10:45:46 AM] ERROR: Max retries reached. Operation failed.: Cannot insert the value NULL into column 'nombre_completo', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:45:46 AM] Transaction failed and connection restarted.: Cannot insert the value NULL into column 'nombre_completo', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:45:46 AM] ERROR: Save entity: Cannot insert the value NULL into column 'nombre_completo', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 10:49:06 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_estu__E0B2763C4938EE87'. Cannot insert duplicate key in object 'dbo.dim_estudiante'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:49:06 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_estu__E0B2763C4938EE87'. Cannot insert duplicate key in object 'dbo.dim_estudiante'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 10:49:06 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_estu__E0B2763C4938EE87'. Cannot insert duplicate key in object 'dbo.dim_estudiante'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:01:47 AM] ERROR: Max retries reached. Operation failed.: Cannot insert the value NULL into column 'nombre', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:01:47 AM] Transaction failed and connection restarted.: Cannot insert the value NULL into column 'nombre', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:01:47 AM] ERROR: Save entity: Cannot insert the value NULL into column 'nombre', table 'DW_Udemy.dbo.dim_estudiante'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:04:12 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:04:12 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:04:12 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:09:28 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:09:28 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:09:28 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:12:21 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:12:21 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:12:21 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:13:19 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:13:19 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:13:19 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:17:59 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:17:59 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:17:59 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:18:19 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:18:19 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:18:19 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:18:55 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:18:55 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:18:55 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 168
+[12-Jun-26 11:27:31 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:27:31 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:27:31 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_susc__4E8926BBCD01FCCE'. Cannot insert duplicate key in object 'dbo.dim_suscripcion'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 171
+[12-Jun-26 11:32:59 AM] ERROR: Max retries reached. Operation failed.: Violation of PRIMARY KEY constraint 'PK__dim_curs__5D3F7502EC0EAE16'. Cannot insert duplicate key in object 'dbo.dim_curso'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:32:59 AM] Transaction failed and connection restarted.: Violation of PRIMARY KEY constraint 'PK__dim_curs__5D3F7502EC0EAE16'. Cannot insert duplicate key in object 'dbo.dim_curso'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+[12-Jun-26 11:32:59 AM] ERROR: Save entity: Violation of PRIMARY KEY constraint 'PK__dim_curs__5D3F7502EC0EAE16'. Cannot insert duplicate key in object 'dbo.dim_curso'. The duplicate key value is (1).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at APPCORE.GDatosAbstract.<>c__DisplayClass28_0.<ExcuteSqlQuery>b__0() in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 178
+   at APPCORE.GDatosAbstract.ExecuteWithRetry(Func`1 operation, Int32 maxRetries) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 242
+   at APPCORE.GDatosAbstract.ExcuteSqlQuery(String strQuery, IDbConnection dbConnection, IDbTransaction dbTransaction, List`1 parameters) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\Abstracts\GDatosAbstract.cs:line 172
+   at APPCORE.BDCore.Abstracts.WDataMapper.InsertObject(EntityClass entity, Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\BDCore\DataMapper.cs:line 55
+   at APPCORE.EntityClass.Save(Boolean fullInsert) in C:\Users\vladi\Documents\A Docs\Repos\ProyectoAnaliticaDatos\AppCore\Data_Access\EntityStructure\EntityClass.cs:line 171

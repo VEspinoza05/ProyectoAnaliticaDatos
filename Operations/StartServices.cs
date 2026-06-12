@@ -11,15 +11,9 @@ public class StartServices
     {
         try
         {
-            Console.Write("############### BEGINNN");
-            new BDConnection().InitMainConnection();
-            /*new CategoryOperation().Excute();
-            new TimeOperation().Excute();
-            
-            DateOLAPOperation.UpdateLastUpdateDate(DateTime.Now);*/
-          
+            Console.Write("### START SEEDING ###");
             await SyntheticDataGeneratorOperation.Start();
-            Console.Write("############### END");
+            Console.Write("### END SEEDING ###");
             return true;
         }
         catch (System.Exception ex)

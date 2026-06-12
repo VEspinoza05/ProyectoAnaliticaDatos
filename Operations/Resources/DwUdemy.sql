@@ -7,10 +7,9 @@ use Dw_Udemy
 
 GO
 
--- 1. Dimensión Estudiante
+-- 1. Dimensiï¿½n Estudiante
 CREATE TABLE dim_estudiante (
-    id_estudiante_key INT PRIMARY KEY, -- Clave primaria dimensional
-    id_estudiante_natural INT NOT NULL,               -- ID original del sistema transaccional
+    id_estudiante INT PRIMARY KEY, -- Clave primaria dimensional
     nombre_completo VARCHAR(150) NOT NULL,
     pais VARCHAR(100),
     fecha_registro DATE
@@ -18,31 +17,30 @@ CREATE TABLE dim_estudiante (
 
 GO
 
--- 2. Dimensión Curso
+-- 2. Dimensiï¿½n Curso
 CREATE TABLE dim_curso (
-    id_curso_key INT  PRIMARY KEY,
-    id_curso_natural INT NOT NULL,
+    id_curso INT  PRIMARY KEY,
     titulo VARCHAR(200) NOT NULL,
-    categoria VARCHAR(100), -- Ej. Programación, Negocios, Diseño
+    categoria VARCHAR(100), -- Ej. Programaciï¿½n, Negocios, Diseï¿½o
     nivel VARCHAR(50),      -- Ej. Principiante, Intermedio, Avanzado
     cantidad_lecciones INT
 );
 
 GO
 
--- 3. Dimensión Suscripción
+-- 3. Dimensiï¿½n Suscripciï¿½n
 CREATE TABLE dim_suscripcion (
-    id_suscripcion_key INT PRIMARY KEY,
+    id_suscripcion INT PRIMARY KEY,
     tipo_acceso VARCHAR(50) NOT NULL, -- Ej. 'Compra Individual', 'Personal Plan'
     estado_suscripcion VARCHAR(50)    -- Ej. 'Activa', 'Cancelada', 'No Aplica'
 );
 
 GO
 
--- 4. Dimensión Tiempo (Calendario)
--- Es vital para agrupar por meses, trimestres o días de la semana en Power BI
+-- 4. Dimensiï¿½n Tiempo (Calendario)
+-- Es vital para agrupar por meses, trimestres o dï¿½as de la semana en Power BI
 CREATE TABLE dim_tiempo (
-    id_tiempo_key INT PRIMARY KEY, -- Formato AAAAMMDD (Ej: 20260603)
+    id_tiempo INT PRIMARY KEY, -- Formato AAAAMMDD (Ej: 20260603)
     fecha DATE NOT NULL,
     anio INT NOT NULL,
     trimestre INT NOT NULL,
@@ -54,51 +52,60 @@ CREATE TABLE dim_tiempo (
 
 GO
 
--- 1. Hechos: Interacciones Diarias (Granularidad: Estudiante-Curso-Día)
+-- 1. Hechos: Interacciones Diarias (Granularidad: Estudiante-Curso-Dï¿½a)
 CREATE TABLE fact_interacciones_diarias (
-    id_interaccion_diaria_key BIGINT PRIMARY KEY,
+    id_interaccion_diaria BIGINT PRIMARY KEY,
     
-    -- Llaves Foráneas (Conexiones a Dimensiones)
-    id_estudiante_key INT NOT NULL,
-    id_curso_key INT NOT NULL,
-    id_tiempo_key INT NOT NULL, -- Fecha en que ocurrió la interacción
+    -- Llaves Forï¿½neas (Conexiones a Dimensiones)
+    id_estudiante INT NOT NULL,
+    id_curso INT NOT NULL,
+    id_tiempo INT NOT NULL, -- Fecha en que ocurriï¿½ la interacciï¿½n
     
-    -- Métricas / Hechos Numéricos
+    -- Mï¿½tricas / Hechos Numï¿½ricos
     tiempo_visualizacion_minutos DECIMAL(8,2) DEFAULT 0.00,
     cantidad_reproducciones_video INT DEFAULT 0,
     preguntas_realizadas INT DEFAULT 0,
     respuestas_dadas INT DEFAULT 0,
     
-    -- Restricciones de Llave Foránea
-    FOREIGN KEY (id_estudiante_key) REFERENCES dim_estudiante(id_estudiante_key),
-    FOREIGN KEY (id_curso_key) REFERENCES dim_curso(id_curso_key),
-    FOREIGN KEY (id_tiempo_key) REFERENCES dim_tiempo(id_tiempo_key)
+    -- Restricciones de Llave Forï¿½nea
+    FOREIGN KEY (id_estudiante) REFERENCES dim_estudiante(id_estudiante),
+    FOREIGN KEY (id_curso) REFERENCES dim_curso(id_curso),
+    FOREIGN KEY (id_tiempo) REFERENCES dim_tiempo(id_tiempo)
 );
 
 GO
 
 -- 2. Hechos: Rendimiento y Evaluaciones (Granularidad: Estudiante-Curso-Cierre de Nota)
 CREATE TABLE fact_rendimiento_evaluaciones (
-    id_rendimiento_key BIGINT PRIMARY KEY,
+    id_rendimiento BIGINT PRIMARY KEY,
     
-    -- Llaves Foráneas (Conexiones a Dimensiones)
-    id_estudiante_key INT NOT NULL,
-    id_curso_key INT NOT NULL,
-    id_suscripcion_key INT NOT NULL,
-    id_tiempo_key INT NOT NULL, -- Fecha de la última actualización de nota o finalización
+    -- Llaves Forï¿½neas (Conexiones a Dimensiones)
+    id_estudiante INT NOT NULL,
+    id_curso INT NOT NULL,
+    id_suscripcion INT NOT NULL,
+    id_tiempo INT NOT NULL, -- Fecha de la ï¿½ltima actualizaciï¿½n de nota o finalizaciï¿½n
     
-    -- Métricas / Hechos Numéricos
+    -- Mï¿½tricas / Hechos Numï¿½ricos
     calificacion_final DECIMAL(5,2) DEFAULT 0.00,
     quizzes_completados INT DEFAULT 0,
     progreso_actual_porcentaje DECIMAL(5,2) DEFAULT 0.00,
     
-    -- Indicadores / Flags Booleanos (0 o 1) para facilitar analítica en Power BI
-    curso_finalizado TINYINT DEFAULT 0,       -- 1 = Sí, 0 = No
-    es_abandono_temprano TINYINT DEFAULT 0,   -- 1 = Sí, 0 = No (Calculado en ETL)
+    -- Indicadores / Flags Booleanos (0 o 1) para facilitar analï¿½tica en Power BI
+    curso_finalizado TINYINT DEFAULT 0,       -- 1 = Sï¿½, 0 = No
+    es_abandono_temprano TINYINT DEFAULT 0,   -- 1 = Sï¿½, 0 = No (Calculado en ETL)
     
-    -- Restricciones de Llave Foránea
-    FOREIGN KEY (id_estudiante_key) REFERENCES dim_estudiante(id_estudiante_key),
-    FOREIGN KEY (id_curso_key) REFERENCES dim_curso(id_curso_key),
-    FOREIGN KEY (id_suscripcion_key) REFERENCES dim_suscripcion(id_suscripcion_key),
-    FOREIGN KEY (id_tiempo_key) REFERENCES dim_tiempo(id_tiempo_key)
+    -- Restricciones de Llave Forï¿½nea
+    FOREIGN KEY (id_estudiante) REFERENCES dim_estudiante(id_estudiante),
+    FOREIGN KEY (id_curso) REFERENCES dim_curso(id_curso),
+    FOREIGN KEY (id_suscripcion) REFERENCES dim_suscripcion(id_suscripcion),
+    FOREIGN KEY (id_tiempo) REFERENCES dim_tiempo(id_tiempo)
 );
+
+GO
+
+CREATE TABLE etl_config (
+	Id INT PRIMARY KEY,
+	BeginDate DATETIME NOT NULL,
+	EndDate DATETIME NOT NULL,
+	Update_At DATETIME NULL,
+)
