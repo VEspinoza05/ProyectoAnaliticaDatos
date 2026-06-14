@@ -13,6 +13,7 @@
     <ProjectReference Include="..\AppCore\AppCore.csproj" />
   </ItemGroup>  
   <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.28">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

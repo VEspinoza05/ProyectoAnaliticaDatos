@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <script defer>
+        async function cargarGraficoHipotesis() {
+            const respuesta = await fetch('/api/ApiAnalitic/GetHipotesis1');
+            const datosAnaliticos = await respuesta.json();
+
+            console.log(datosAnaliticos)
+
+            // Mostrar datos matemáticos en etiquetas de texto de tu HTML
+            document.getElementById("txtPearson").innerText = `Coeficiente R: ${datosAnaliticos.CoeficientePearson}`;
+            document.getElementById("txtConclusion").innerText = datosAnaliticos.Conclusion;
+
+            const parsedPoints = datosAnaliticos.PuntosGrafico.slice(0,100).map(coords => {
+                return({x: coords.X, y: coords.Y })
+            })
+
+            console.log(parsedPoints)
+
+            // Configurar Chart.js
+            const ctx = document.getElementById('myScatterChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Estudiantes (Minutos vs Progreso)',
+                        // ChartJS mapeará automáticamente { x: X, y: Y } desde el DTO de C#
+                        data: parsedPoints, 
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Tiempo de Visualización (Minutos)' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Progreso del Curso (%)' },
+                            min: 0,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        cargarGraficoHipotesis()
+    </script>
+</head>
+
+<body>
+    <h1>Hipotesis 1</h1>    
+    <p id="txtPearson"></p>
+    <p id="txtConclusion"></p>
+
+    <canvas id="myScatterChart" width="600" height="400"></canvas>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Operations;
+using Operations.AnaliticOperations;
 using Operations.AnaliticOperations.Model;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,7 +44,7 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 #endregion
 
 // <Configurar Operations
-builder.Services.AddScoped<DimEstudianteOperation>();
+builder.Services.AddScoped<AnalisisHipotesisOperation>();
 
 // 👇 Configurar CORS
 builder.Services.AddCors(options =>

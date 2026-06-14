@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Operations.AnaliticOperations;
-using Operations.AnaliticOperations.Model;
 
 namespace ETLService.Controllers
 {
@@ -12,18 +9,21 @@ namespace ETLService.Controllers
     [Route("api/[controller]/[action]")]
     public class ApiAnaliticController : ControllerBase
     {
-        private readonly DimEstudianteOperation _operation;
+        private readonly AnalisisHipotesisOperation _hipotesisOperation;
 
-        public ApiAnaliticController(DimEstudianteOperation operation)
+        // Inyectamos múltiples operaciones según tus requerimientos
+        public ApiAnaliticController(
+            AnalisisHipotesisOperation hipotesisOperation)
         {
-            _operation = operation;
+            _hipotesisOperation = hipotesisOperation;
         }
 
+        // NUEVO ENDPOINT: Devuelve los cálculos de la hipótesis y el arreglo numérico
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetHipotesis1Async()
         {
-            var data = await _operation.getStudents();
-            return Ok(data);
+            var resultado = await _hipotesisOperation.CalcularHipotesis1Async();
+            return Ok(resultado);
         }
     }
 }
