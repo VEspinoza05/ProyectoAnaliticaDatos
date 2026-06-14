@@ -131,12 +131,6 @@ Diseñar un modelo analítico basado en un Data Warehouse que permita analizar e
 * Fuente de datos: Plataforma Udemy (simulada)
 * Periodo de análisis: 3 meses
 * Usuarios: 1000 estudiantes sintéticos
-* Herramientas:
-
-  * Python
-  * SQL
-  * MySQL
-  * Power BI
 * Modelo: Star Schema
 
 ---
@@ -198,15 +192,46 @@ Diseñar un modelo analítico basado en un Data Warehouse que permita analizar e
 
 ## Tabla de Hechos
 
-* fact_rendimiento
+### A) fact_interacciones_progreso (Grano: Evento diario por estudiante y curso)
+Permite resolver: H1 (primer módulo en primera semana) y H2 (nivel de actividad diario/semanal).
+
+Claves foráneas: id_estudiante, id_curso, id_tiempo, id_dispositivo.
+
+Métricas:
+* tiempo_permanencia_segundos
+* videos_vistos
+* modulos_completados_count
+* porcentaje_progreso_acumulado (Aquí se mide el avance hacia el 100% del curso).
+
+### B) fact_evaluaciones (Grano: Por quiz/intento realizado)
+Permite resolver: H2 (rendimiento académico en base a quizzes).
+
+Claves foráneas: id_estudiante, id_curso, id_tiempo, id_dispositivo.
+
+Métricas:
+
+* calificacion_obtenida
+* intentos_realizados
+* aprobado (Flag 1 o 0)
+
+### C) fact_ventas_inscripciones (Grano: Por curso adquirido)
+Permite resolver: H3 (dispositivos al momento de interactuar/comprar), H4 (relación precio/rating vs progreso) y H5 (compras en promociones).
+
+Claves foráneas: id_estudiante, id_curso, id_tiempo (fecha de compra), id_promocion, id_dispositivo (desde donde compró).
+
+Métricas:
+* monto_pagado
+* completado (Flag 1 o 0 si llegó al 100% al final de los 3 meses).
+* progreso_final_porcentaje
+* dias_para_terminar
 
 ## Dimensiones
 
-* dim_estudiante
-* dim_curso
-* dim_tiempo
-* dim_dispositivo
-* dim_promocion
+* dim_estudiante: ID, nombre, país, fecha_registro.
+* dim_curso: ID, título, categoría, nivel, rating_promedio (monitoreable o fijo), precio base.
+* dim_tiempo: ID, fecha, día, semana, mes, año, trimestre. (Crucial para evaluar "la primera semana" de la H1).
+* dim_dispositivo: ID, tipo_dispositivo (Móvil, PC, Tablet), sistema_operativo.
+* dim_promocion: ID, nombre_promocion, porcentaje_descuento, tipo_campaña.
 
 ---
 
