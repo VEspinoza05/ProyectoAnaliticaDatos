@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Operations.SyntheticDataGenerator.Model;
@@ -9,21 +10,17 @@ namespace UdemyAnalytics.Models
     {
         [Key]
         [Column("id_interaccion_progreso")]
-        public int IdInteraccionProgreso { get; set; }
+        public int IdInteraccionProgreso { get; set; } // PK Autoincremental para facilitar auditoría
 
-        [ForeignKey("Estudiante")]
         [Column("id_estudiante")]
         public int IdEstudiante { get; set; }
 
-        [ForeignKey("Curso")]
         [Column("id_curso")]
         public int IdCurso { get; set; }
 
-        [ForeignKey("Tiempo")]
         [Column("id_tiempo")]
         public int IdTiempo { get; set; }
 
-        [ForeignKey("Dispositivo")]
         [Column("id_dispositivo")]
         public int IdDispositivo { get; set; }
 
@@ -39,11 +36,11 @@ namespace UdemyAnalytics.Models
         [Column("porcentaje_progreso_acumulado")]
         public decimal PorcentajeProgresoAcumulado { get; set; }
 
-        // Propiedades de Navegación (Opcionales para EF)
-        public required DimEstudiante Estudiante { get; set; }
-        public required DimCurso Curso { get; set; }
-        public required DimTiempo Tiempo { get; set; }
-        public required DimDispositivo Dispositivo { get; set; }
+        // Propiedades de navegación limpias y opcionales para evitar conflictos de Tracking
+        [ForeignKey("IdEstudiante")] public virtual DimEstudiante? Estudiante { get; set; }
+        [ForeignKey("IdCurso")] public virtual DimCurso? Curso { get; set; }
+        [ForeignKey("IdTiempo")] public virtual DimTiempo? Tiempo { get; set; }
+        [ForeignKey("IdDispositivo")] public virtual DimDispositivo? Dispositivo { get; set; }
     }
 
     [Table("fact_evaluaciones")]
@@ -53,19 +50,15 @@ namespace UdemyAnalytics.Models
         [Column("id_evaluacion")]
         public int IdEvaluacion { get; set; }
 
-        [ForeignKey("Estudiante")]
         [Column("id_estudiante")]
         public int IdEstudiante { get; set; }
 
-        [ForeignKey("Curso")]
         [Column("id_curso")]
         public int IdCurso { get; set; }
 
-        [ForeignKey("Tiempo")]
         [Column("id_tiempo")]
         public int IdTiempo { get; set; }
 
-        [ForeignKey("Dispositivo")]
         [Column("id_dispositivo")]
         public int IdDispositivo { get; set; }
 
@@ -78,10 +71,10 @@ namespace UdemyAnalytics.Models
         [Column("aprobado")]
         public int Aprobado { get; set; } // 1 o 0
 
-        public required DimEstudiante Estudiante { get; set; }
-        public required DimCurso Curso { get; set; }
-        public required DimTiempo Tiempo { get; set; }
-        public required DimDispositivo Dispositivo { get; set; }
+        [ForeignKey("IdEstudiante")] public virtual DimEstudiante? Estudiante { get; set; }
+        [ForeignKey("IdCurso")] public virtual DimCurso? Curso { get; set; }
+        [ForeignKey("IdTiempo")] public virtual DimTiempo? Tiempo { get; set; }
+        [ForeignKey("IdDispositivo")] public virtual DimDispositivo? Dispositivo { get; set; }
     }
 
     [Table("fact_ventas_inscripciones")]
@@ -91,23 +84,18 @@ namespace UdemyAnalytics.Models
         [Column("id_venta_inscripcion")]
         public int IdVentaInscripcion { get; set; }
 
-        [ForeignKey("Estudiante")]
         [Column("id_estudiante")]
         public int IdEstudiante { get; set; }
 
-        [ForeignKey("Curso")]
         [Column("id_curso")]
         public int IdCurso { get; set; }
 
-        [ForeignKey("Tiempo")]
-        [Column("id_tiempo")] // Fecha de compra
+        [Column("id_tiempo")]
         public int IdTiempo { get; set; }
 
-        [ForeignKey("Promocion")]
         [Column("id_promocion")]
-        public int? IdPromocion { get; set; }
+        public int? IdPromocion { get; set; } // Nullable si se compra sin cupón
 
-        [ForeignKey("Dispositivo")]
         [Column("id_dispositivo")]
         public int IdDispositivo { get; set; }
 
@@ -121,12 +109,12 @@ namespace UdemyAnalytics.Models
         public decimal ProgresoFinalPorcentaje { get; set; }
 
         [Column("dias_para_terminar")]
-        public int? DiasParaTerminar { get; set; } // Nullable si no lo terminó
+        public int? DiasParaTerminar { get; set; }
 
-        public required DimEstudiante Estudiante { get; set; }
-        public required DimCurso Curso { get; set; }
-        public required DimTiempo Tiempo { get; set; }
-        public DimPromocion? Promocion { get; set; }
-        public required DimDispositivo Dispositivo { get; set; }
+        [ForeignKey("IdEstudiante")] public virtual DimEstudiante? Estudiante { get; set; }
+        [ForeignKey("IdCurso")] public virtual DimCurso? Curso { get; set; }
+        [ForeignKey("IdTiempo")] public virtual DimTiempo? Tiempo { get; set; }
+        [ForeignKey("IdPromocion")] public virtual DimPromocion? Promocion { get; set; }
+        [ForeignKey("IdDispositivo")] public virtual DimDispositivo? Dispositivo { get; set; }
     }
 }

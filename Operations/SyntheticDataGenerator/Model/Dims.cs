@@ -1,6 +1,6 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using UdemyAnalytics.Models;
 
 namespace Operations.SyntheticDataGenerator.Model
 {
@@ -9,6 +9,7 @@ namespace Operations.SyntheticDataGenerator.Model
     {
         [Key]
         [Column("id_estudiante")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] // Nosotros controlaremos los IDs correlativos
         public int IdEstudiante { get; set; }
 
         [Required]
@@ -23,9 +24,6 @@ namespace Operations.SyntheticDataGenerator.Model
 
         [Column("fecha_registro")]
         public DateTime FechaRegistro { get; set; }
-        public List<FactVentasInscripciones> VentasInscripciones { get; set; } = new List<FactVentasInscripciones>();
-        public List<FactInteraccionesProgreso> InteraccionesProgresos { get; set; } =  new List<FactInteraccionesProgreso>();
-        public List<FactEvaluaciones> Evaluaciones { get; set; } =  new List<FactEvaluaciones>();
     }
 
     [Table("dim_curso")]
@@ -33,6 +31,7 @@ namespace Operations.SyntheticDataGenerator.Model
     {
         [Key]
         [Column("id_curso")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdCurso { get; set; }
 
         [Required]
@@ -55,9 +54,6 @@ namespace Operations.SyntheticDataGenerator.Model
 
         [Column("precio_base")]
         public decimal PrecioBase { get; set; }
-        public List<FactVentasInscripciones> VentasInscripciones { get; set; } = new List<FactVentasInscripciones>();
-        public List<FactInteraccionesProgreso> InteraccionesProgresos { get; set; } = new List<FactInteraccionesProgreso>();
-        public List<FactEvaluaciones> Evaluaciones { get; set; } =  new List<FactEvaluaciones>();
     }
 
     [Table("dim_tiempo")]
@@ -65,7 +61,8 @@ namespace Operations.SyntheticDataGenerator.Model
     {
         [Key]
         [Column("id_tiempo")]
-        public int IdTiempo { get; set; } // Formato sugerido: YYYYMMDD
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] // Formato inteligente numérico YYYYMMDD
+        public int IdTiempo { get; set; }
 
         [Column("fecha")]
         public DateTime Fecha { get; set; }
@@ -79,16 +76,13 @@ namespace Operations.SyntheticDataGenerator.Model
         [Required]
         [StringLength(20)]
         [Column("mes")]
-        public string Mes { get; set; }  = string.Empty;
+        public string Mes { get; set; } = string.Empty;
 
         [Column("anio")]
         public int Anio { get; set; }
 
         [Column("trimestre")]
         public int Trimestre { get; set; }
-        public List<FactVentasInscripciones> VentasInscripciones { get; set; } = new List<FactVentasInscripciones>();
-        public List<FactInteraccionesProgreso> InteraccionesProgresos { get; set; } = new List<FactInteraccionesProgreso>();
-        public List<FactEvaluaciones> Evaluaciones { get; set; } = new List<FactEvaluaciones>();
     }
 
     [Table("dim_dispositivo")]
@@ -96,20 +90,18 @@ namespace Operations.SyntheticDataGenerator.Model
     {
         [Key]
         [Column("id_dispositivo")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdDispositivo { get; set; }
 
         [Required]
         [StringLength(50)]
-        [Column("tipo_dispositivo")] // Móvil, PC, Tablet
-        public string TipoDispositivo { get; set; }  = string.Empty;
+        [Column("tipo_dispositivo")]
+        public string TipoDispositivo { get; set; } = string.Empty;
 
         [Required]
         [StringLength(50)]
         [Column("sistema_operativo")]
         public string SistemaOperativo { get; set; } = string.Empty;
-        public List<FactVentasInscripciones> VentasInscripciones { get; set; } = new List<FactVentasInscripciones>();
-        public List<FactInteraccionesProgreso> InteraccionesProgresos { get; set; } =  new List<FactInteraccionesProgreso>();
-        public List<FactEvaluaciones> Evaluaciones { get; set; } =  new List<FactEvaluaciones>();
     }
 
     [Table("dim_promocion")]
@@ -117,6 +109,7 @@ namespace Operations.SyntheticDataGenerator.Model
     {
         [Key]
         [Column("id_promocion")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdPromocion { get; set; }
 
         [Required]
@@ -131,6 +124,5 @@ namespace Operations.SyntheticDataGenerator.Model
         [StringLength(50)]
         [Column("tipo_campania")]
         public string TipoCampania { get; set; } = string.Empty;
-        public List<FactVentasInscripciones> VentasInscripciones { get; set; } = new List<FactVentasInscripciones>();
     }
 }

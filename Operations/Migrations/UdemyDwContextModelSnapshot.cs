@@ -25,11 +25,8 @@ namespace Operations.Migrations
             modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimCurso", b =>
                 {
                     b.Property<int>("IdCurso")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id_curso");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCurso"));
 
                     b.Property<string>("Categoria")
                         .IsRequired()
@@ -67,11 +64,8 @@ namespace Operations.Migrations
             modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimDispositivo", b =>
                 {
                     b.Property<int>("IdDispositivo")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id_dispositivo");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDispositivo"));
 
                     b.Property<string>("SistemaOperativo")
                         .IsRequired()
@@ -93,11 +87,8 @@ namespace Operations.Migrations
             modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimEstudiante", b =>
                 {
                     b.Property<int>("IdEstudiante")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id_estudiante");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEstudiante"));
 
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("datetime2")
@@ -123,11 +114,8 @@ namespace Operations.Migrations
             modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimPromocion", b =>
                 {
                     b.Property<int>("IdPromocion")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id_promocion");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPromocion"));
 
                     b.Property<string>("NombrePromocion")
                         .IsRequired()
@@ -154,11 +142,8 @@ namespace Operations.Migrations
             modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimTiempo", b =>
                 {
                     b.Property<int>("IdTiempo")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id_tiempo");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTiempo"));
 
                     b.Property<int>("Anio")
                         .HasColumnType("int")
@@ -384,25 +369,25 @@ namespace Operations.Migrations
             modelBuilder.Entity("UdemyAnalytics.Models.FactEvaluaciones", b =>
                 {
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimCurso", "Curso")
-                        .WithMany("Evaluaciones")
+                        .WithMany()
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimDispositivo", "Dispositivo")
-                        .WithMany("Evaluaciones")
+                        .WithMany()
                         .HasForeignKey("IdDispositivo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimEstudiante", "Estudiante")
-                        .WithMany("Evaluaciones")
+                        .WithMany()
                         .HasForeignKey("IdEstudiante")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimTiempo", "Tiempo")
-                        .WithMany("Evaluaciones")
+                        .WithMany()
                         .HasForeignKey("IdTiempo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -419,25 +404,25 @@ namespace Operations.Migrations
             modelBuilder.Entity("UdemyAnalytics.Models.FactInteraccionesProgreso", b =>
                 {
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimCurso", "Curso")
-                        .WithMany("InteraccionesProgresos")
+                        .WithMany()
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimDispositivo", "Dispositivo")
-                        .WithMany("InteraccionesProgresos")
+                        .WithMany()
                         .HasForeignKey("IdDispositivo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimEstudiante", "Estudiante")
-                        .WithMany("InteraccionesProgresos")
+                        .WithMany()
                         .HasForeignKey("IdEstudiante")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimTiempo", "Tiempo")
-                        .WithMany("InteraccionesProgresos")
+                        .WithMany()
                         .HasForeignKey("IdTiempo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -454,29 +439,29 @@ namespace Operations.Migrations
             modelBuilder.Entity("UdemyAnalytics.Models.FactVentasInscripciones", b =>
                 {
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimCurso", "Curso")
-                        .WithMany("VentasInscripciones")
+                        .WithMany()
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimDispositivo", "Dispositivo")
-                        .WithMany("VentasInscripciones")
+                        .WithMany()
                         .HasForeignKey("IdDispositivo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimEstudiante", "Estudiante")
-                        .WithMany("VentasInscripciones")
+                        .WithMany()
                         .HasForeignKey("IdEstudiante")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimPromocion", "Promocion")
-                        .WithMany("VentasInscripciones")
+                        .WithMany()
                         .HasForeignKey("IdPromocion");
 
                     b.HasOne("Operations.SyntheticDataGenerator.Model.DimTiempo", "Tiempo")
-                        .WithMany("VentasInscripciones")
+                        .WithMany()
                         .HasForeignKey("IdTiempo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -490,47 +475,6 @@ namespace Operations.Migrations
                     b.Navigation("Promocion");
 
                     b.Navigation("Tiempo");
-                });
-
-            modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimCurso", b =>
-                {
-                    b.Navigation("Evaluaciones");
-
-                    b.Navigation("InteraccionesProgresos");
-
-                    b.Navigation("VentasInscripciones");
-                });
-
-            modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimDispositivo", b =>
-                {
-                    b.Navigation("Evaluaciones");
-
-                    b.Navigation("InteraccionesProgresos");
-
-                    b.Navigation("VentasInscripciones");
-                });
-
-            modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimEstudiante", b =>
-                {
-                    b.Navigation("Evaluaciones");
-
-                    b.Navigation("InteraccionesProgresos");
-
-                    b.Navigation("VentasInscripciones");
-                });
-
-            modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimPromocion", b =>
-                {
-                    b.Navigation("VentasInscripciones");
-                });
-
-            modelBuilder.Entity("Operations.SyntheticDataGenerator.Model.DimTiempo", b =>
-                {
-                    b.Navigation("Evaluaciones");
-
-                    b.Navigation("InteraccionesProgresos");
-
-                    b.Navigation("VentasInscripciones");
                 });
 #pragma warning restore 612, 618
         }

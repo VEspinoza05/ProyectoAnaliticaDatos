@@ -1,9 +1,5 @@
-﻿using APPCORE;
-using BusinessLogic.Connection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Operations.SyntheticDataGenerator;
-using Operations.SyntheticDataGenerator.Model;
 
 namespace Operations;
 
@@ -14,7 +10,7 @@ public class StartServices
         try
         {
             Console.Write("### START SEEDING ###");
-            //await SyntheticDataGeneratorOperation.Start();
+            await SyntheticDataGeneratorOperation.Start(new UdemyDwContext());
             Console.Write("### END SEEDING ###");
         }
         catch (System.Exception ex)

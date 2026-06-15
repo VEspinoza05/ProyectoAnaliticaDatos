@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Operations.Migrations
 {
     /// <inheritdoc />
-    public partial class AnalyticStructureUpdate : Migration
+    public partial class EntitiesReestructuration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace Operations.Migrations
                 name: "dim_curso",
                 columns: table => new
                 {
-                    id_curso = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_curso = table.Column<int>(type: "int", nullable: false),
                     titulo = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     categoria = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     nivel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -32,8 +31,7 @@ namespace Operations.Migrations
                 name: "dim_dispositivo",
                 columns: table => new
                 {
-                    id_dispositivo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_dispositivo = table.Column<int>(type: "int", nullable: false),
                     tipo_dispositivo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     sistema_operativo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
@@ -46,8 +44,7 @@ namespace Operations.Migrations
                 name: "dim_estudiante",
                 columns: table => new
                 {
-                    id_estudiante = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_estudiante = table.Column<int>(type: "int", nullable: false),
                     nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     pais = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -61,8 +58,7 @@ namespace Operations.Migrations
                 name: "dim_promocion",
                 columns: table => new
                 {
-                    id_promocion = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_promocion = table.Column<int>(type: "int", nullable: false),
                     nombre_promocion = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     porcentaje_descuento = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
                     tipo_campania = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
@@ -76,8 +72,7 @@ namespace Operations.Migrations
                 name: "dim_tiempo",
                 columns: table => new
                 {
-                    id_tiempo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id_tiempo = table.Column<int>(type: "int", nullable: false),
                     fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     dia = table.Column<int>(type: "int", nullable: false),
                     semana = table.Column<int>(type: "int", nullable: false),

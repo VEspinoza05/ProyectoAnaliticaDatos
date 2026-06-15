@@ -44,7 +44,6 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 #endregion
 
 // <Configurar Operations
-builder.Services.AddScoped<AnalisisHipotesisOperation>();
 
 // 👇 Configurar CORS
 builder.Services.AddCors(options =>
