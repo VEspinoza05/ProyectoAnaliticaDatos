@@ -66,6 +66,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Iniciar servicio de operaciones
 await new StartServices().StartServicesApp(builder.Services);
 
 var app = builder.Build();

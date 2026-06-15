@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Operations.SyntheticDataGenerator.Model;
 
-public class Etl_Config
+[Table("etl_config")]
+public class EtlConfig
 {
     public int Id { get; set; }
     public DateTime BeginDate { get; set; }

@@ -14,7 +14,7 @@ public class StartServices
         try
         {
             Console.Write("### START SEEDING ###");
-            await SyntheticDataGeneratorOperation.Start();
+            //await SyntheticDataGeneratorOperation.Start();
             Console.Write("### END SEEDING ###");
         }
         catch (System.Exception ex)
