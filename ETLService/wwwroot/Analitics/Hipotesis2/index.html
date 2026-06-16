@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Hipótesis 2 - Learning Analytics</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.4/build/index.umd.min.js"></script>
+
+    <script defer>
+        async function cargarGraficoHipotesis2() {
+            try {
+                // Petición al controlador expuesto anteriormente
+                const respuesta = await fetch('/api/SegundaHipotesis/hipotesis2');
+                const datosAnaliticos = await respuesta.json();
+
+                // 1. Renderizar Métricas de Resumen e Interpretación Estadísticas
+                document.getElementById("txtPearson").innerText = `Coeficiente R de Pearson: ${datosAnaliticos.CoeficienteCorrelacion}`;
+                document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.InterpretacionCorrelacion}`;
+                document.getElementById("txtAnovaF").innerText = `Estadístico F (ANOVA): ${datosAnaliticos.StatF}`;
+                document.getElementById("txtPValue").innerText = `Valor p: ${datosAnaliticos.ValorP} (${datosAnaliticos.EsSignificativo ? "Significativo" : "No Significativo"})`;
+
+                // ==========================================
+                // 2. CONFIGURACIÓN DEL GRÁFICO DE DISPERSIÓN (SCATTER)
+                // ==========================================
+                const ctxScatter = document.getElementById('scatterChart').getContext('2d');
+                
+                // Mapeamos los datos al formato requerido por Chart.js para Scatter: { x: valor, y: valor }
+                const scatterPoints = datosAnaliticos.ScatterData.map(p => ({
+                    x: p.X,
+                    y: p.Y
+                }));
+
+                new Chart(ctxScatter, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'Estudiantes (Actividad vs Calificación)',
+                            data: scatterPoints,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Gráfico de Dispersión: Relación Actividad y Rendimiento' }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Actividad Total (Clicks / Interacciones)' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Calificación Final (0 - 100)' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                // ==========================================
+                // 3. CONFIGURACIÓN DEL GRÁFICO DE CAJAS Y BIGOTES (BOXPLOT)
+                // ==========================================
+                const ctxBoxplot = document.getElementById('boxplotChart').getContext('2d');
+
+                // Extraemos las etiquetas de las categorías ("Actividad Baja", "Actividad Media", "Actividad Alta")
+                const boxplotLabels = datosAnaliticos.BoxplotData.map(b => b.Categoria);
+
+                // Mapeamos los datos al formato requerido por el plugin Boxplot de Chart.js: { min, q1, median, q3, max }
+                const boxplotValues = datosAnaliticos.BoxplotData.map(b => ({
+                    min: b.Minimo,
+                    q1: b.Q1,
+                    median: b.Mediana,
+                    q3: b.Q3,
+                    max: b.Maximo
+                }));
+
+                new Chart(ctxBoxplot, {
+                    type: 'boxplot', // Tipo de gráfico provisto por el CDN del plugin
+                    data: {
+                        labels: boxplotLabels,
+                        datasets: [{
+                            label: 'Distribución de Calificaciones',
+                            data: boxplotValues,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 2,
+                            itemRadius: 0 // Oculta los outliers duplicados ya que el backend computó los bigotes completos
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Gráfico de Cajas y Bigotes: ANOVA por Segmento de Actividad' },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Categoría de Actividad Estudiantil' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Calificaciones Finales' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error al cargar la analítica de la Hipótesis 2:", error);
+                document.getElementById("txtInterpretacion").innerText = "Error al conectar con la API de analítica.";
+            }
+        }
+
+        // Ejecutar al cargar el documento HTML
+        cargarGraficoHipotesis2();
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Análisis de la Hipótesis 2 (H2)</h1>
+        <p><em>"Los estudiantes con mayor nivel de actividad presentan un mejor rendimiento académico final."</em></p>
+        
+        <div class="metrics-panel">
+            <h2>Resultados Estadísticos del Servidor</h2>
+            <p id="txtPearson" style="font-weight: 500; margin: 5px 0;"></p>
+            <p id="txtInterpretacion" style="font-weight: bold; color: #2980b9; margin: 5px 0;"></p>
+            <hr style="border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
+            <p id="txtAnovaF" style="margin: 5px 0;"></p>
+            <p id="txtPValue" style="font-weight: 500; margin: 5px 0;"></p>
+        </div>
+
+        <div class="chart-box">
+            <h2>1. Prueba de Correlación (Análisis Continuo)</h2>
+            <canvas id="scatterChart" width="800" height="400"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>2. Prueba ANOVA (Análisis Categórico)</h2>
+            <canvas id="boxplotChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>
