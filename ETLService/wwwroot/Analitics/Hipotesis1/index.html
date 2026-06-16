@@ -4,63 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
     <script defer>
         async function cargarGraficoHipotesis() {
-            const respuesta = await fetch('/api/ApiAnalitic/GetHipotesis1');
+            // Se realiza la petición al controlador
+            const respuesta = await fetch('/api/PrimeraHipotesis/hipotesis1');
             const datosAnaliticos = await respuesta.json();
 
-            console.log(datosAnaliticos)
-
-            // Mostrar datos matemáticos en etiquetas de texto de tu HTML
-            document.getElementById("txtPearson").innerText = `Coeficiente R: ${datosAnaliticos.CoeficientePearson}`;
+            // Ojo con el mapeo usando camelCase para responder al estándar JSON de ASP.NET
+            document.getElementById("txtCoeficienteModulo").innerText = `Coeficiente Módulo: ${datosAnaliticos.CoeficienteModulo}`;
+            document.getElementById("txtCoeficienteDias").innerText = `Coeficiente Días: ${datosAnaliticos.CoeficienteDias}`;
+            document.getElementById("txtIntercepto").innerText = `Intercepto: ${datosAnaliticos.Intercepto}`;
             document.getElementById("txtConclusion").innerText = datosAnaliticos.Conclusion;
 
-            const parsedPoints = datosAnaliticos.PuntosGrafico.slice(0,100).map(coords => {
-                return({x: coords.X, y: coords.Y })
-            })
-
-            console.log(parsedPoints)
-
-            // Configurar Chart.js
-            const ctx = document.getElementById('myScatterChart').getContext('2d');
+            // Configurar grafico sigmoide
+            const ctx = document.getElementById('sigmoidChart').getContext('2d');
             new Chart(ctx, {
-                type: 'scatter',
+                type: 'line',
                 data: {
+                    labels: datosAnaliticos.CurvaSigmoide.map(p => 'Día ' + p.Dia),
                     datasets: [{
-                        label: 'Estudiantes (Minutos vs Progreso)',
-                        // ChartJS mapeará automáticamente { x: X, y: Y } desde el DTO de C#
-                        data: parsedPoints, 
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                        label: 'Curva Logística (Probabilidad)',
+                        // CORRECCIÓN 3: Se usa .probabilidad en minúscula inicial
+                        data: datosAnaliticos.CurvaSigmoide.map(p => p.Probabilidad * 100),
+                        showLine: true,       
+                        fill: false,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 3,
+                        pointRadius: 4,       // Recomendado: Déjalo en un tamaño visible inicialmente para validar que se grafique
+                        pointHoverRadius: 6,
+                        tension: 0.4          // Suavizado óptimo para visualizar la curva en "S" (Sigmoide)
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         x: {
-                            title: { display: true, text: 'Tiempo de Visualización (Minutos)' }
+                            title: { display: true, text: 'Días transcurridos' }
                         },
                         y: {
-                            title: { display: true, text: 'Progreso del Curso (%)' },
+                            title: { display: true, text: 'Probabilidad de éxito (%)' },
                             min: 0,
                             max: 100
+                        }
+                    },
+                }
+            });
+
+            // Grafico de barras
+            const bar = document.getElementById('StackedBars').getContext('2d');
+            new Chart(bar, {
+                type: 'bar',
+                data: {
+                    labels: ['Completó en Semana 1 (Sí)', 'No Completó en Semana 1 (No)'],
+                    datasets: [{
+                        label: 'Exito',
+                        data: [datosAnaliticos.BarrasApiladas100["SiCompletó_Exito"],datosAnaliticos.BarrasApiladas100["NoCompletó_Exito"]],
+                        backgroundColor: 'red'
+                    }, {
+                        label: 'Abandono',
+                        data: [datosAnaliticos.BarrasApiladas100["SiCompletó_Abandono"],datosAnaliticos.BarrasApiladas100["NoCompletó_Abandono"]],
+                        backgroundColor: 'blue'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { stacked: true },
+                        y: {
+                            stacked: true,
                         }
                     }
                 }
             });
         }
 
-        cargarGraficoHipotesis()
+        cargarGraficoHipotesis();
     </script>
 </head>
 
 <body>
-    <h1>Hipotesis 1</h1>    
-    <p id="txtPearson"></p>
-    <p id="txtConclusion"></p>
+    <h1>Análisis de la Hipótesis 1</h1>    
+    <p id="txtCoeficienteModulo"></p>
+    <p id="txtCoeficienteDias"></p>
+    <p id="txtIntercepto"></p>
+    <p id="txtConclusion" style="font-weight: bold; margin-bottom: 20px;"></p>
 
-    <canvas id="myScatterChart" width="600" height="400"></canvas>
+    <div style="width: 700px; margin: 0 auto;">
+        <canvas id="sigmoidChart" width="600" height="400"></canvas>
+        <canvas id="StackedBars" width="600" height="500"></canvas>
+    </div>
 </body>
 
 </html>

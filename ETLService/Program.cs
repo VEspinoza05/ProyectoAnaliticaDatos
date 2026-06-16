@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Operations;
 using Operations.AnaliticOperations;
 using Operations.AnaliticOperations.Model;
+using ProyectoAnalitica.Operations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,7 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 #endregion
 
 // <Configurar Operations
+builder.Services.AddScoped<AnalisisPrimeraHipotesisOperation>();
 
 // 👇 Configurar CORS
 builder.Services.AddCors(options =>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.ML;
 using Operations.SyntheticDataGenerator;
 
 namespace Operations;
