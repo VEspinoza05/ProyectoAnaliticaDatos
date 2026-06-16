@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Análisis de la Hipótesis 1</title>
+    <link rel="stylesheet" href="../style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
     <script defer>
         async function cargarGraficoHipotesis() {
@@ -86,15 +87,24 @@
 </head>
 
 <body>
-    <h1>Análisis de la Hipótesis 1</h1>    
-    <p id="txtCoeficienteModulo"></p>
-    <p id="txtCoeficienteDias"></p>
-    <p id="txtIntercepto"></p>
-    <p id="txtConclusion" style="font-weight: bold; margin-bottom: 20px;"></p>
+    <div class="container">
+        <h1>Análisis de la Hipótesis 1</h1>    
+        <p><em>"Los estudiantes que completan el primer módulo durante la primera semana presentan mayor probabilidad de finalizar el curso"</em></p>
+        <div class="metrics-panel">
+            <p id="txtCoeficienteModulo" class="numericValueStrong"></p>
+            <p id="txtCoeficienteDias" class="numericValueStrong"></p>
+            <p id="txtIntercepto" class="numericValueStrong"></p>
+            <hr class="textSeparator">
+            <p id="txtConclusion" class="conclusion"></p>
+        </div>
 
-    <div style="width: 700px; margin: 0 auto;">
-        <canvas id="sigmoidChart" width="600" height="400"></canvas>
-        <canvas id="StackedBars" width="600" height="500"></canvas>
+        <div class="chart-box">
+            <canvas id="sigmoidChart" width="800" height="400"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <canvas id="StackedBars" width="800" height="400"></canvas>
+        </div>
     </div>
 </body>
 

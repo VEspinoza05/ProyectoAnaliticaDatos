@@ -26,3 +26,23 @@ body {
 }
 h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
 h2 { color: #34495e; font-size: 1.2rem; }
+
+.interpretation {
+    font-weight: bold; color: #2980b9; margin: 5px 0;
+}
+
+.conclusion {
+    font-weight: bold; color: #2980b9; margin: 5px 0;
+}
+
+.numericValueStrong { 
+    font-weight: 500; margin: 5px 0;
+}
+
+.numericValue { 
+    margin: 5px 0;
+}
+
+.textSeparator {
+    border: 0; border-top: 1px solid #ccc; margin: 10px 0;
+}
