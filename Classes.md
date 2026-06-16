@@ -147,3 +147,256 @@ namespace Operations.AnaliticOperations.DTOs
     }
 }
 ```
+
+## Este es el archivo UdemyDwContext.cs:
+```C#
+using Microsoft.EntityFrameworkCore;
+using Operations.SyntheticDataGenerator.Model;
+using UdemyAnalytics.Models;
+
+namespace Operations.SyntheticDataGenerator
+{
+    public class UdemyDwContext : DbContext
+    {
+        public DbSet<DimEstudiante> DimEstudiantes { get; set; }
+        public DbSet<DimCurso> DimCursos { get; set; }
+        public DbSet<DimTiempo> DimTiempos { get; set; }
+        public DbSet<DimDispositivo> DimDispositivos { get; set; }
+        public DbSet<DimPromocion> DimPromociones { get; set; }
+        public DbSet<FactInteraccionesProgreso> FactInteraccionesProgreso { get; set; }
+        public DbSet<FactEvaluaciones> FactEvaluaciones { get; set; }
+        public DbSet<FactVentasInscripciones> FactVentasInscripciones { get; set; }
+        public DbSet<EtlConfig> EtlConfig { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // Reemplaza con tu cadena de conexión local a SQL Server
+            optionsBuilder.UseSqlServer("Server=localhost;Database=DW_Udemy;Trusted_Connection=True;TrustServerCertificate=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configuración de precisión para tipos Decimal (Evita truncados automáticos)
+            modelBuilder.Entity<DimCurso>().Property(c => c.PrecioBase).HasPrecision(18, 2);
+            modelBuilder.Entity<DimCurso>().Property(c => c.RatingPromedio).HasPrecision(3, 2);
+            modelBuilder.Entity<DimPromocion>().Property(p => p.PorcentajeDescuento).HasPrecision(5, 2);
+            modelBuilder.Entity<FactInteraccionesProgreso>().Property(f => f.PorcentajeProgresoAcumulado).HasPrecision(5, 2);
+            modelBuilder.Entity<FactEvaluaciones>().Property(f => f.CalificacionObtenida).HasPrecision(5, 2);
+            modelBuilder.Entity<FactVentasInscripciones>().Property(f => f.MontoPagado).HasPrecision(18, 2);
+            modelBuilder.Entity<FactVentasInscripciones>().Property(f => f.ProgresoFinalPorcentaje).HasPrecision(5, 2);
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}
+```
+
+## Este es el archivo index.html
+```HTML
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Hipótesis 2 - Learning Analytics</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.4/build/index.umd.min.js"></script>
+
+    <script defer>
+        async function cargarGraficoHipotesis2() {
+            try {
+                // Petición al controlador expuesto anteriormente
+                const respuesta = await fetch('/api/SegundaHipotesis/hipotesis2');
+                const datosAnaliticos = await respuesta.json();
+
+                // 1. Renderizar Métricas de Resumen e Interpretación Estadísticas
+                document.getElementById("txtPearson").innerText = `Coeficiente R de Pearson: ${datosAnaliticos.CoeficienteCorrelacion}`;
+                document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.InterpretacionCorrelacion}`;
+                document.getElementById("txtAnovaF").innerText = `Estadístico F (ANOVA): ${datosAnaliticos.StatF}`;
+                document.getElementById("txtPValue").innerText = `Valor p: ${datosAnaliticos.ValorP} (${datosAnaliticos.EsSignificativo ? "Significativo" : "No Significativo"})`;
+
+                // ==========================================
+                // 2. CONFIGURACIÓN DEL GRÁFICO DE DISPERSIÓN (SCATTER)
+                // ==========================================
+                const ctxScatter = document.getElementById('scatterChart').getContext('2d');
+                
+                // Mapeamos los datos al formato requerido por Chart.js para Scatter: { x: valor, y: valor }
+                const scatterPoints = datosAnaliticos.ScatterData.map(p => ({
+                    x: p.X,
+                    y: p.Y
+                }));
+
+                new Chart(ctxScatter, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'Estudiantes (Actividad vs Calificación)',
+                            data: scatterPoints,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Gráfico de Dispersión: Relación Actividad y Rendimiento' }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Actividad Total (Clicks / Interacciones)' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Calificación Final (0 - 100)' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                // ==========================================
+                // 3. CONFIGURACIÓN DEL GRÁFICO DE CAJAS Y BIGOTES (BOXPLOT)
+                // ==========================================
+                const ctxBoxplot = document.getElementById('boxplotChart').getContext('2d');
+
+                // Extraemos las etiquetas de las categorías ("Actividad Baja", "Actividad Media", "Actividad Alta")
+                const boxplotLabels = datosAnaliticos.BoxplotData.map(b => b.Categoria);
+
+                // Mapeamos los datos al formato requerido por el plugin Boxplot de Chart.js: { min, q1, median, q3, max }
+                const boxplotValues = datosAnaliticos.BoxplotData.map(b => ({
+                    min: b.Minimo,
+                    q1: b.Q1,
+                    median: b.Mediana,
+                    q3: b.Q3,
+                    max: b.Maximo
+                }));
+
+                new Chart(ctxBoxplot, {
+                    type: 'boxplot', // Tipo de gráfico provisto por el CDN del plugin
+                    data: {
+                        labels: boxplotLabels,
+                        datasets: [{
+                            label: 'Distribución de Calificaciones',
+                            data: boxplotValues,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 2,
+                            itemRadius: 0 // Oculta los outliers duplicados ya que el backend computó los bigotes completos
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Gráfico de Cajas y Bigotes: ANOVA por Segmento de Actividad' },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Categoría de Actividad Estudiantil' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Calificaciones Finales' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error al cargar la analítica de la Hipótesis 2:", error);
+                document.getElementById("txtInterpretacion").innerText = "Error al conectar con la API de analítica.";
+            }
+        }
+
+        // Ejecutar al cargar el documento HTML
+        cargarGraficoHipotesis2();
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Análisis de la Hipótesis 2 (H2)</h1>
+        <p><em>"Los estudiantes con mayor nivel de actividad presentan un mejor rendimiento académico final."</em></p>
+        
+        <div class="metrics-panel">
+            <h2>Resultados Estadísticos del Servidor</h2>
+            <p id="txtPearson" class="numericValue"></p>
+            <p id="txtInterpretacion" class="interpretation"></p>
+            <hr class="textSeparator">
+            <p id="txtAnovaF" class="numericValue"></p>
+            <p id="txtPValue" class="numericValueStrong"></p>
+        </div>
+
+        <div class="chart-box">
+            <h2>1. Prueba de Correlación (Análisis Continuo)</h2>
+            <canvas id="scatterChart" width="800" height="400"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>2. Prueba ANOVA (Análisis Categórico)</h2>
+            <canvas id="boxplotChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>
+```
+
+## Este es el archivo style.css
+```CSS
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.metrics-panel {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+.chart-box {
+    margin-bottom: 40px;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+}
+h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+h2 { color: #34495e; font-size: 1.2rem; }
+
+.interpretation {
+    font-weight: bold; color: #2980b9; margin: 5px 0;
+}
+
+.conclusion {
+    font-weight: bold; color: #2980b9; margin: 5px 0;
+}
+
+.numericValueStrong { 
+    font-weight: 500; margin: 5px 0;
+}
+
+.numericValue { 
+    margin: 5px 0;
+}
+
+.textSeparator {
+    border: 0; border-top: 1px solid #ccc; margin: 10px 0;
+}
+```

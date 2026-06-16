@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Hipótesis 3 - Learning Analytics</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-error-bars@4.4.1/build/index.umd.min.js"></script>
+
+    <script defer>
+        async function cargarGraficoHipotesis3() {
+            try {
+                // Petición al endpoint expuesto por tu controlador en C# para la Hipótesis 3
+                const respuesta = await fetch('/api/ApiAnallitic/hipotesis-h3');
+                const datosAnaliticos = await respuesta.json();
+
+                // 1. Renderizar Métricas de Resumen e Interpretación del Servidor
+                document.getElementById("txtChiCuadrado").innerText = `Estadístico Chi-Cuadrado: ${datosAnaliticos.ChiCuadradoEstadistico}`;
+                document.getElementById("txtPValueChi").innerText = `Valor p (Chi²): ${datosAnaliticos.PValorChiCuadrado}`;
+                document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.Conclusion}`;
+
+                // ==========================================
+                // 2. GRÁFICO DE BARRAS AGRUPADAS (CHI-CUADRADO)
+                // ==========================================
+                const ctxChi = document.getElementById('chiSquareChart').getContext('2d');
+                
+                // Mapeamos los datos categóricos de la tabla de contingencia
+                const etiquetasDispositivos = datosAnaliticos.DatosChiCuadrado.map(d => d.Dispositivo);
+                const porcentajesFinalizo = datosAnaliticos.DatosChiCuadrado.map(d => d.PorcentajeFinalizo);
+                const porcentajesAbandono = datosAnaliticos.DatosChiCuadrado.map(d => d.PorcentajeAbandono);
+
+                new Chart(ctxChi, {
+                    type: 'bar',
+                    data: {
+                        labels: etiquetasDispositivos,
+                        datasets: [
+                            {
+                                label: '% Finalizó el Curso',
+                                data: porcentajesFinalizo,
+                                backgroundColor: 'rgba(46, 204, 113, 0.75)', // Verde Soft
+                                borderColor: 'rgba(46, 204, 113, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: '% Abandonó el Curso',
+                                data: porcentajesAbandono,
+                                backgroundColor: 'rgba(231, 76, 60, 0.75)', // Rojo Soft
+                                borderColor: 'rgba(231, 76, 60, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Proporciones de Éxito Académico según Dispositivo de Acceso' },
+                            legend: { display: true, position: 'top' }
+                        },
+                        scales: {
+                            x: { title: { display: true, text: 'Tipo de Dispositivo Utilizado' } },
+                            y: { 
+                                title: { display: true, text: 'Porcentaje (%)' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                // ==========================================
+                // 3. GRÁFICO DE BARRAS DE COEFICIENTES / ODDS RATIOS (REGRESIÓN)
+                // ==========================================
+                const ctxRegresion = document.getElementById('regressionChart').getContext('2d');
+
+                // Mapeamos las etiquetas de las variables codificadas por ML.NET
+                const etiquetasVariables = datosAnaliticos.DatosRegresion.map(r => r.Variable);
+                
+                /* Formato requerido por 'chartjs-chart-error-bars' para barras de error horizontales:
+                  El eje X evaluará el valor central (y), y los límites del error (yMin, yMax).
+                */
+                const datosConError = datosAnaliticos.DatosRegresion.map(r => ({
+                    x: r.OddsRatio,
+                    xMin: r.IntervaloConfianzaInferior,
+                    xMax: r.IntervaloConfianzaSuperior
+                }));
+
+                console.log(Chart.registry.controllers);
+  
+                new Chart(ctxRegresion, {
+                    type: 'barWithErrorBars', // Tipo especializado del plugin cargado por CDN
+                    data: {
+                        labels: etiquetasVariables,
+                        datasets: [{
+                            label: 'Odds Ratio (Efecto del Riesgo)',
+                            data: datosConError,
+                            backgroundColor: 'rgba(52, 152, 219, 0.65)', // Azul
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            borderWidth: 1.5,
+                            errorBarColor: 'rgba(44, 62, 80, 1)', // Color del bigote del intervalo
+                            errorBarWhiskerLineWidth: 2,
+                            errorBarWhiskerSize: 10
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y', // Fuerza a que el gráfico de barras sea HORIZONTAL
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Odds Ratios e Intervalos de Confianza del 95% (ML.NET)' },
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let raw = context.raw;
+                                        return ` Odds Ratio: ${raw.y} (IC 95%: [${raw.yMin} - ${raw.yMax}])`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Odds Ratio (Línea de referencia = 1.0)' },
+                                // El valor 1.0 indica un efecto neutro. Valores > 1 indican mayor probabilidad de completar
+                                suggestedMin: 0
+                            },
+                            y: { title: { display: true, text: 'Características del Dispositivo' } }
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error al cargar la analítica de la Hipótesis 3:", error);
+                document.getElementById("txtInterpretacion").innerText = "Error crítico de conexión o formato con la API de analítica.";
+            }
+        }
+
+        // Se ejecuta automáticamente al renderizarse el DOM
+        window.onload = cargarGraficoHipotesis3;
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Análisis de la Hipótesis 3 (H3)</h1>
+        <p><em>"El acceso frecuente a través de dispositivos móviles se asocia con menores tasas de finalización debido a la experiencia de usuario y límites de conectividad."</em></p>
+        
+        <div class="metrics-panel">
+            <h2>Resultados Estadísticos del Servidor (C#)</h2>
+            <p id="txtChiCuadrado" class="numericValue"></p>
+            <p id="txtPValueChi" class="numericValueStrong"></p>
+            <hr class="textSeparator">
+            <p id="txtInterpretacion" class="conclusion"></p>
+        </div>
+
+        <div class="chart-box">
+            <h2>1. Prueba de Independencia (Chi-Cuadrado)</h2>
+            <canvas id="chiSquareChart" width="800" height="400"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>2. Regresión Logística Binaria (Magnitud del Impacto)</h2>
+            <canvas id="regressionChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>

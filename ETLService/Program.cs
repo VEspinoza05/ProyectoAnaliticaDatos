@@ -47,6 +47,7 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 // <Configurar Operations
 builder.Services.AddScoped<AnalisisPrimeraHipotesisOperation>();
 builder.Services.AddScoped<AnalisisSegundaHipotesisOperation>();
+builder.Services.AddScoped<AnalisisTerceraHipotesisOperation>();
 
 // 👇 Configurar CORS
 builder.Services.AddCors(options =>
