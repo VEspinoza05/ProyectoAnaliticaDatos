@@ -45,10 +45,13 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 #endregion
 
 // <Configurar Operations
+# region Configuraciones Operations
 builder.Services.AddScoped<AnalisisPrimeraHipotesisOperation>();
 builder.Services.AddScoped<AnalisisSegundaHipotesisOperation>();
 builder.Services.AddScoped<AnalisisTerceraHipotesisOperation>();
 builder.Services.AddScoped<AnalisisCuartaHipotesisOperation>();
+builder.Services.AddScoped<AnalisisQuintaHipotesisOperation>();
+#endregion
 
 // 👇 Configurar CORS
 builder.Services.AddCors(options =>

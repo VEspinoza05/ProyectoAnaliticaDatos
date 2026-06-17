@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Hipótesis 5 - Learning Analytics</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.5/build/index.umd.min.js"></script>
+
+    <script defer>
+        async function cargarGraficoHipotesis5() {
+            try {
+                // Petición al endpoint expuesto del controlador ApiAnaliticController
+                const respuesta = await fetch('/api/QuintaHipotesis/hipotesis-h5');
+                const datosAnaliticos = await respuesta.json();
+
+                // 1. Renderizar Métricas de Resumen Estadístico (ANOVA de una vía)
+                document.getElementById("txtPromedioPromo").innerText = `Progreso Medio (Con Promoción): ${datosAnaliticos.AnovaResult.PromedioConPromocion.toFixed(2)}%`;
+                document.getElementById("txtPromedioRegular").innerText = `Progreso Medio (Precio Regular): ${datosAnaliticos.AnovaResult.PromedioPrecioRegular.toFixed(2)}%`;
+                document.getElementById("txtAnovaF").innerText = `Estadístico F calculado: ${datosAnaliticos.AnovaResult.FStat.toFixed(4)}`;
+                document.getElementById("txtPValue").innerText = `Valor p: ${datosAnaliticos.AnovaResult.PValue.toExponential(4)}`;
+                
+                const conclusionElement = document.getElementById("txtConclusion");
+                conclusionElement.innerText = `Conclusión: ${datosAnaliticos.AnovaResult.Conclusion}`;
+
+                // ==========================================
+                // 2. CONFIGURACIÓN DEL GRÁFICO DE VIOLÍN / DENSIDAD
+                // ==========================================
+                const ctxViolin = document.getElementById('violinChart').getContext('2d');
+                
+                // Agrupamos el set de datos en los dos vectores que procesa el plugin de violín
+                const muestrasPromo = datosAnaliticos.DatosDensidad
+                    .filter(d => d.Grupo === "Con Promoción")
+                    .map(d => d.Progreso);
+                    
+                const muestrasRegular = datosAnaliticos.DatosDensidad
+                    .filter(d => d.Grupo === "Precio Regular")
+                    .map(d => d.Progreso);
+
+                new Chart(ctxViolin, {
+                    type: 'violin', // Tipo habilitado por el plugin complementario
+                    data: {
+                        labels: ['Con Descuento', 'Precio Regular'],
+                        datasets: [{
+                            label: 'Distribución y Densidad del Progreso %',
+                            data: [muestrasPromo, muestrasRegular], // El plugin computa la densidad Kernel internamente
+                            backgroundColor: [
+                                'rgba(231, 76, 60, 0.5)',  // Rojo suave para promoción
+                                'rgba(46, 204, 113, 0.5)'  // Verde suave para precio regular
+                            ],
+                            borderColor: [
+                                'rgba(231, 76, 60, 1)',
+                                'rgba(46, 204, 113, 1)'
+                            ],
+                            borderWidth: 2,
+                            outlierRadius: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Gráfico de Violín: Comparativa de la Forma de Distribución del Progreso' },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Condición de Adquisición (compra_promocion)' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Progreso Final Obtenido (%)' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                // ==========================================
+                // 3. CONFIGURACIÓN DEL GRÁFICO DE LÍNEAS DE TENDENCIA COMPARADAS
+                // ==========================================
+                const ctxLine = document.getElementById('lineChart').getContext('2d');
+
+                // Mapeo de la línea de tiempo (dim_tiempo) para el eje X
+                const fechasLabels = datosAnaliticos.TendenciaTemporal.map(t => t.Fecha);
+                const seriePromo = datosAnaliticos.TendenciaTemporal.map(t => t.PromedioConPromocion);
+                const serieRegular = datosAnaliticos.TendenciaTemporal.map(t => t.PromedioPrecioRegular);
+
+                new Chart(ctxLine, {
+                    type: 'line',
+                    data: {
+                        labels: fechasLabels,
+                        datasets: [
+                            {
+                                label: 'Grupo Con Descuento',
+                                data: seriePromo,
+                                borderColor: 'rgba(231, 76, 60, 1)',
+                                backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                                borderWidth: 3,
+                                tension: 0.2, // Curvatura ligera y limpia para series temporales continuas
+                                fill: false
+                            },
+                            {
+                                label: 'Grupo Precio Regular',
+                                data: serieRegular,
+                                borderColor: 'rgba(46, 204, 113, 1)',
+                                backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                                borderWidth: 3,
+                                tension: 0.2,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Regresión Temporal: Progreso Acumulado Promedio en el Tiempo' }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Línea de Tiempo Analítica (dim_tiempo)' },
+                                grid: { display: false } // Limpieza visual en el eje X
+                            },
+                            y: {
+                                title: { display: true, text: 'Progreso Promedio Acumulado (%)' },
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error al cargar la analítica de la Hipótesis 5:", error);
+                document.getElementById("txtConclusion").innerText = "Error crítico de conexión al procesar los modelos analíticos en el servidor.";
+            }
+        }
+
+        // Inicialización automatizada al instanciar el DOM
+        cargarGraficoHipotesis5();
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Análisis de la Hipótesis 5 (H5)</h1>
+        <p><em>"Los estudiantes que adquieren cursos en promoción presentan un menor progreso promedio que aquellos que los compran a precio regular."</em></p>
+        
+        <div class="metrics-panel">
+            <h2>Resultados Estadísticos del Servidor (Prueba ANOVA)</h2>
+            <p id="txtPromedioPromo" class="numericValue"></p>
+            <p id="txtPromedioRegular" class="numericValue"></p>
+            <hr class="textSeparator">
+            <p id="txtAnovaF" class="numericValue"></p>
+            <p id="txtPValue" class="numericValueStrong"></p>
+            <p id="txtConclusion" class="conclusion"></p>
+        </div>
+
+        <div class="chart-box">
+            <h2>1. Análisis Categórico Comparativo (Forma de Distribución)</h2>
+            <canvas id="violinChart" width="800" height="400"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>2. Regresión y Tendencia Acumulada (Evolución Temporal)</h2>
+            <canvas id="lineChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>
