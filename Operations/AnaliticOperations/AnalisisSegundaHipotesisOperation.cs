@@ -56,6 +56,15 @@ namespace ProyectoAnalitica.Operations
             var boxplotData = CalcularBoxplotMetrics(estudiantesCategorizados);
             var (statF, pValue) = CalcularAnovaUnvia(estudiantesCategorizados);
 
+            bool hipotesisAceptada = r > 0 && pValue < 0.05; 
+
+            // Si no calculas Valor P, puedes usar un umbral de fuerza: coeficientePearson > 0.15
+            string conclusion = hipotesisAceptada
+                ? $"Hipótesis Aceptada. Se detectó una correlación lineal positiva significativa (r = {r:F3}, p = {pValue:F4}) entre el volumen de interacciones y la nota final. Los estudiantes que registran mayor actividad en la plataforma logran, en promedio, un rendimiento académico superior."
+                : $"Hipótesis Rechazada (r = {r:F3}, p = {pValue:F4}). No se evidencia una relación lineal positiva o estadísticamente significativa que demuestre que un mayor volumen de interacciones en el Data Warehouse determine directamente una calificación más alta.";
+
+            // Retornar DTO
+
             return new AnalisisH2ResultDto
             {
                 CoeficienteCorrelacion = Math.Round(r, 4),
@@ -64,7 +73,8 @@ namespace ProyectoAnalitica.Operations
                 StatF = Math.Round(statF, 4),
                 ValorP = Math.Round(pValue, 4),
                 EsSignificativo = pValue < 0.05,
-                BoxplotData = boxplotData
+                BoxplotData = boxplotData,
+                Conclusion = conclusion
             };
         }
 
@@ -85,7 +95,7 @@ namespace ProyectoAnalitica.Operations
                     EstudianteKey = g.Key,
                     // Si tienes columnas específicas como 'CantidadClicks' o 'MinutosVistos' puedes sumarlas.
                     // Aquí sumamos los registros de interacción o una columna numérica como nivel de actividad.
-                    TotalActividad = (double)g.Sum(x => x.TiempoPermanenciaSegundos) 
+                    TotalActividad = (double)g.Sum(x => x.TiempoPermanenciaSegundos / 60) 
                 })
                 .ToList();
 

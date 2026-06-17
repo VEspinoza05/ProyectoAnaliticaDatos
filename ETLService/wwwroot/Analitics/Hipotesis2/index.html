@@ -18,9 +18,10 @@
 
                 // 1. Renderizar Métricas de Resumen e Interpretación Estadísticas
                 document.getElementById("txtPearson").innerText = `Coeficiente R de Pearson: ${datosAnaliticos.CoeficienteCorrelacion}`;
-                document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.InterpretacionCorrelacion}`;
+                //document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.InterpretacionCorrelacion}`;
                 document.getElementById("txtAnovaF").innerText = `Estadístico F (ANOVA): ${datosAnaliticos.StatF}`;
                 document.getElementById("txtPValue").innerText = `Valor p: ${datosAnaliticos.ValorP} (${datosAnaliticos.EsSignificativo ? "Significativo" : "No Significativo"})`;
+                document.getElementById("txtConclusionH2").innerText = datosAnaliticos.Conclusion; // Recuerda el camelCase de ASP.NET
 
                 // ==========================================
                 // 2. CONFIGURACIÓN DEL GRÁFICO DE DISPERSIÓN (SCATTER)
@@ -52,7 +53,7 @@
                         },
                         scales: {
                             x: {
-                                title: { display: true, text: 'Actividad Total (Clicks / Interacciones)' }
+                                title: { display: true, text: 'Actividad Total (Minutos vistos)' }
                             },
                             y: {
                                 title: { display: true, text: 'Calificación Final (0 - 100)' },
@@ -128,15 +129,16 @@
 <body>
     <div class="container">
         <h1>Análisis de la Hipótesis 2 (H2)</h1>
-        <p><em>"Los estudiantes con mayor nivel de actividad presentan un mejor rendimiento académico final."</em></p>
+        <p><em>"Los estudiantes con mayor nivel de actividad presentan mejor rendimiento académico final."</em></p>
+        <p>Tipos de prueba: Correlación / ANOVA</p>
         
         <div class="metrics-panel">
-            <h2>Resultados Estadísticos del Servidor</h2>
+            <h2>Resultados</h2>
             <p id="txtPearson" class="numericValue"></p>
-            <p id="txtInterpretacion" class="interpretation"></p>
             <hr class="textSeparator">
             <p id="txtAnovaF" class="numericValue"></p>
             <p id="txtPValue" class="numericValueStrong"></p>
+            <p id="txtConclusionH2" class="conclusion"></p>
         </div>
 
         <div class="chart-box">

@@ -107,13 +107,13 @@
                         indexAxis: 'y', // Fuerza a que el gráfico de barras sea HORIZONTAL
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Odds Ratios e Intervalos de Confianza del 95% (ML.NET)' },
+                            title: { display: true, text: 'Odds Ratios e Intervalos de Confianza del 95%' },
                             legend: { display: false },
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
                                         let raw = context.raw;
-                                        return ` Odds Ratio: ${raw.y} (IC 95%: [${raw.yMin} - ${raw.yMax}])`;
+                                        return ` Odds Ratio: ${raw.x} (IC 95%: [${raw.xMin} - ${raw.xMax}])`;
                                     }
                                 }
                             }
@@ -145,10 +145,11 @@
 <body>
     <div class="container">
         <h1>Análisis de la Hipótesis 3 (H3)</h1>
-        <p><em>"El acceso frecuente a través de dispositivos móviles se asocia con menores tasas de finalización debido a la experiencia de usuario y límites de conectividad."</em></p>
+        <p><em>"Los estudiantes que acceden principalmente desde dispositivos móviles presentan menores tasas de finalización que aquellos que utilizan computadoras."</em></p>
+        <p>Tipos de prueba: Chi-cuadrado / Regresión</p>
         
         <div class="metrics-panel">
-            <h2>Resultados Estadísticos del Servidor (C#)</h2>
+            <h2>Resultados</h2>
             <p id="txtChiCuadrado" class="numericValue"></p>
             <p id="txtPValueChi" class="numericValueStrong"></p>
             <hr class="textSeparator">

@@ -24,6 +24,7 @@ namespace ProyectoAnalitica.Dtos
         // Métricas de ANOVA (Boxplot)
         public double StatF { get; set; }
         public double ValorP { get; set; } // P-Value aproximado o marcador de significancia
+        public string Conclusion { get; set; }
         public bool EsSignificativo { get; set; }
         public List<BoxplotCategoryDto> BoxplotData { get; set; }
     }

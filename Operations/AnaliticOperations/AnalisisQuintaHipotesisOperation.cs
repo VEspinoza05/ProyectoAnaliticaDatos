@@ -105,8 +105,8 @@ namespace ProyectoAnalitica.Operations
 
             bool esSignificativo = pValue < 0.05;
             string conclusion = esSignificativo
-                ? $"Se rechaza la hipótesis nula. Existe una diferencia estadísticamente significativa en el progreso de aprendizaje. Los compradores bajo promoción promedian {avg1:F2}% frente a {avg2:F2}% de precio regular."
-                : "No se encontraron diferencias estadísticas significativas que demuestren que las promociones disminuyen el compromiso a largo plazo.";
+                ? $"Hipótesis rechazada. Existe una diferencia estadísticamente significativa en el progreso de aprendizaje. Los compradores bajo promoción promedian {avg1:F2}% frente a {avg2:F2}% de precio regular."
+                : "Hipótesis aprobada. diferencias estadísticas significativas que demuestren que las promociones disminuyen el compromiso a largo plazo.";
 
             return new AnovaResultDto
             {

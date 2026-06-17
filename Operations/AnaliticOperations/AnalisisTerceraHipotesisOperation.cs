@@ -93,8 +93,8 @@ namespace ProyectoAnalitica.Operations
 
             // Conclusión estadística preliminar
             resultado.Conclusion = resultado.PValorChiCuadrado < 0.05 
-                ? "Rechazamos H0: Existe una relación significativa entre el tipo de dispositivo y la finalización."
-                : "No se rechaza H0: No hay evidencia suficiente para afirmar que el dispositivo influye en la tasa de finalización.";
+                ? "Hipótesis aceptada. Existe una relación significativa entre el tipo de dispositivo y la finalización."
+                : "Hipótesis rechazada. No hay evidencia suficiente para afirmar que el dispositivo influye en la tasa de finalización.";
 
             // ==========================================
             // PARTE B: REGRESIÓN LOGÍSTICA (Odds Ratios)
