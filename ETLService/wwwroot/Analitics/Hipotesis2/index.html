@@ -10,31 +10,61 @@
     <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.4/build/index.umd.min.js"></script>
 
     <script defer>
-        async function cargarGraficoHipotesis2() {
+        let scatterChart = null;
+        let boxplotChart = null;
+
+        async function cargarGraficoHipotesis2(fechaInicio, fechaFin) {
             try {
-                // Petición al controlador expuesto anteriormente
-                const respuesta = await fetch('/api/SegundaHipotesis/hipotesis2');
+                let url = '/api/SegundaHipotesis/hipotesis2';
+
+                // Si ambas fechas existen, agregamos la query
+                if (fechaInicio && fechaFin) {
+                    url += `?Desde=${fechaInicio}&Hasta=${fechaFin}`;
+                }
+
+                const respuesta = await fetch(url);
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
                 const datosAnaliticos = await respuesta.json();
 
-                // 1. Renderizar Métricas de Resumen e Interpretación Estadísticas
-                document.getElementById("txtPearson").innerText = `Coeficiente R de Pearson: ${datosAnaliticos.CoeficienteCorrelacion}`;
-                //document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.InterpretacionCorrelacion}`;
-                document.getElementById("txtAnovaF").innerText = `Estadístico F (ANOVA): ${datosAnaliticos.StatF}`;
-                document.getElementById("txtPValue").innerText = `Valor p: ${datosAnaliticos.ValorP} (${datosAnaliticos.EsSignificativo ? "Significativo" : "No Significativo"})`;
-                document.getElementById("txtConclusionH2").innerText = datosAnaliticos.Conclusion; // Recuerda el camelCase de ASP.NET
+                console.log("Datos en scatter data" + datosAnaliticos.ScatterData.length)
 
-                // ==========================================
-                // 2. CONFIGURACIÓN DEL GRÁFICO DE DISPERSIÓN (SCATTER)
-                // ==========================================
-                const ctxScatter = document.getElementById('scatterChart').getContext('2d');
-                
-                // Mapeamos los datos al formato requerido por Chart.js para Scatter: { x: valor, y: valor }
+                // Métricas
+                document.getElementById("txtPearson").innerText =
+                    `Coeficiente R de Pearson: ${datosAnaliticos.CoeficienteCorrelacion}`;
+
+                document.getElementById("txtAnovaF").innerText =
+                    `Estadístico F (ANOVA): ${datosAnaliticos.StatF}`;
+
+                document.getElementById("txtPValue").innerText =
+                    `Valor p: ${datosAnaliticos.ValorP} (${
+                        datosAnaliticos.EsSignificativo
+                            ? "Significativo"
+                            : "No Significativo"
+                    })`;
+
+                document.getElementById("txtConclusionH2").innerText =
+                    datosAnaliticos.Conclusion;
+
+                // ==========================
+                // Scatter
+                // ==========================
+                const ctxScatter =
+                    document.getElementById('scatterChart').getContext('2d');
+
                 const scatterPoints = datosAnaliticos.ScatterData.map(p => ({
                     x: p.X,
                     y: p.Y
                 }));
 
-                new Chart(ctxScatter, {
+                if (scatterChart) {
+                    scatterChart.destroy();
+                }
+
+                scatterChart = new Chart(ctxScatter, {
                     type: 'scatter',
                     data: {
                         datasets: [{
@@ -47,42 +77,34 @@
                         }]
                     },
                     options: {
-                        responsive: true,
-                        plugins: {
-                            title: { display: true, text: 'Gráfico de Dispersión: Relación Actividad y Rendimiento' }
-                        },
-                        scales: {
-                            x: {
-                                title: { display: true, text: 'Actividad Total (Minutos vistos)' }
-                            },
-                            y: {
-                                title: { display: true, text: 'Calificación Final (0 - 100)' },
-                                min: 0,
-                                max: 100
-                            }
-                        }
+                        responsive: true
                     }
                 });
 
-                // ==========================================
-                // 3. CONFIGURACIÓN DEL GRÁFICO DE CAJAS Y BIGOTES (BOXPLOT)
-                // ==========================================
-                const ctxBoxplot = document.getElementById('boxplotChart').getContext('2d');
+                // ==========================
+                // Boxplot
+                // ==========================
+                const ctxBoxplot =
+                    document.getElementById('boxplotChart').getContext('2d');
 
-                // Extraemos las etiquetas de las categorías ("Actividad Baja", "Actividad Media", "Actividad Alta")
-                const boxplotLabels = datosAnaliticos.BoxplotData.map(b => b.Categoria);
+                const boxplotLabels =
+                    datosAnaliticos.BoxplotData.map(b => b.Categoria);
 
-                // Mapeamos los datos al formato requerido por el plugin Boxplot de Chart.js: { min, q1, median, q3, max }
-                const boxplotValues = datosAnaliticos.BoxplotData.map(b => ({
-                    min: b.Minimo,
-                    q1: b.Q1,
-                    median: b.Mediana,
-                    q3: b.Q3,
-                    max: b.Maximo
-                }));
+                const boxplotValues =
+                    datosAnaliticos.BoxplotData.map(b => ({
+                        min: b.Minimo,
+                        q1: b.Q1,
+                        median: b.Mediana,
+                        q3: b.Q3,
+                        max: b.Maximo
+                    }));
 
-                new Chart(ctxBoxplot, {
-                    type: 'boxplot', // Tipo de gráfico provisto por el CDN del plugin
+                if (boxplotChart) {
+                    boxplotChart.destroy();
+                }
+
+                boxplotChart = new Chart(ctxBoxplot, {
+                    type: 'boxplot',
                     data: {
                         labels: boxplotLabels,
                         datasets: [{
@@ -91,36 +113,20 @@
                             backgroundColor: 'rgba(255, 99, 132, 0.5)',
                             borderColor: 'rgba(255, 99, 132, 1)',
                             borderWidth: 2,
-                            itemRadius: 0 // Oculta los outliers duplicados ya que el backend computó los bigotes completos
+                            itemRadius: 0
                         }]
                     },
                     options: {
-                        responsive: true,
-                        plugins: {
-                            title: { display: true, text: 'Gráfico de Cajas y Bigotes: ANOVA por Segmento de Actividad' },
-                            legend: { display: false }
-                        },
-                        scales: {
-                            x: {
-                                title: { display: true, text: 'Categoría de Actividad Estudiantil' }
-                            },
-                            y: {
-                                title: { display: true, text: 'Calificaciones Finales' },
-                                min: 0,
-                                max: 100
-                            }
-                        }
+                        responsive: true
                     }
                 });
 
             } catch (error) {
-                console.error("Error al cargar la analítica de la Hipótesis 2:", error);
-                document.getElementById("txtInterpretacion").innerText = "Error al conectar con la API de analítica.";
+                console.error("Error al cargar la analítica:", error);
             }
         }
 
-        // Ejecutar al cargar el documento HTML
-        cargarGraficoHipotesis2();
+ 
     </script>
 
     <link rel="stylesheet" href="../style.css">
@@ -132,6 +138,18 @@
         <p><em>"Los estudiantes con mayor nivel de actividad presentan mejor rendimiento académico final."</em></p>
         <p>Tipos de prueba: Correlación / ANOVA</p>
         
+        <div class="date-panel">
+            <div>
+                <p class="input-label">Desde</p>
+                <input type="date" id="fecha-inicio" name="desde" value="2026-01-01">
+            </div>
+            <div>
+                <p class="input-label">Hasta</p>
+                <input type="date" id="fecha-fin" name="hasta" value="2026-03-31">
+            </div>
+            <button id="filter-btn">Filtrar</button>
+        </div>
+
         <div class="metrics-panel">
             <h2>Resultados</h2>
             <p id="txtPearson" class="numericValue"></p>
@@ -151,6 +169,23 @@
             <canvas id="boxplotChart" width="800" height="400"></canvas>
         </div>
     </div>
+    <script>
+        const filterButton = document.getElementById("filter-btn");
+
+        filterButton.addEventListener("click", () => {
+            const fechaInicio =
+                document.getElementById("fecha-inicio").value;
+
+            const fechaFin =
+                document.getElementById("fecha-fin").value;
+
+            cargarGraficoHipotesis2(fechaInicio, fechaFin);
+        });
+
+        // Carga inicial sin parámetros.
+        // La API usará las fechas por defecto.
+        cargarGraficoHipotesis2();
+    </script>
 </body>
 
 </html>

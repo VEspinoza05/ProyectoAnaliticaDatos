@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ProyectoAnalitica.Dtos;
-using Operations.SyntheticDataGenerator; // Tu namespace del DbContext
+using Operations.SyntheticDataGenerator;
+using Operations.DTOs; // Tu namespace del DbContext
 
 namespace ProyectoAnalitica.Operations
 {
@@ -17,10 +18,10 @@ namespace ProyectoAnalitica.Operations
             _context = context;
         }
 
-        public AnalisisH2ResultDto CalcularHipotesisH2()
+        public AnalisisH2ResultDto CalcularHipotesisH2(DateRangeDTO dateRange)
         {
             // 1. EXTRACCIÓN DE DATOS REALES DESDE EL DATA WAREHOUSE CON EF CORE
-            var datosBase = ObtenerDatosBaseDesdeBD();
+            var datosBase = ObtenerDatosBaseDesdeBD(dateRange.ToNumericDateRangeDTO());
 
             if (!datosBase.Any())
             {
@@ -82,13 +83,14 @@ namespace ProyectoAnalitica.Operations
         /// Consulta la base de datos relacional usando EF Core, calculando la actividad agregada 
         /// y el promedio de calificaciones de quizzes por cada estudiante.
         /// </summary>
-        private List<(double Actividad, double Calificacion)> ObtenerDatosBaseDesdeBD()
+        private List<(double Actividad, double Calificacion)> ObtenerDatosBaseDesdeBD(NumericDateRangeDTO numericDateRangeDTO)
         {
             // Asumiendo nombres estándar de llaves foráneas (ajusta 'EstudianteKey' según tus modelos)
             
             // 1. Consolidar actividades por estudiante (Videos vistos, minutos o interacciones)
             var actividadesPorEstudiante = _context.FactInteraccionesProgreso
                 .AsNoTracking()
+                .Where(x => x.IdTiempo >= numericDateRangeDTO.Desde && x.IdTiempo <= numericDateRangeDTO.Hasta)
                 .GroupBy(f => f.IdEstudiante) // Cambiar por el nombre exacto de la FK en tu modelo
                 .Select(g => new
                 {
@@ -102,6 +104,7 @@ namespace ProyectoAnalitica.Operations
             // 2. Consolidar el promedio de las calificaciones de los quizzes por estudiante
             var calificacionesPorEstudiante = _context.FactEvaluaciones
                 .AsNoTracking()
+                .Where(x => x.IdTiempo >= numericDateRangeDTO.Desde && x.IdTiempo <= numericDateRangeDTO.Hasta)
                 .GroupBy(f => f.IdEstudiante) // Cambiar por el nombre exacto de la FK en tu modelo
                 .Select(g => new
                 {

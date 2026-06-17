@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Operations.AnaliticOperations;
+using Operations.DTOs;
 using ProyectoAnalitica.Dtos;
 using ProyectoAnalitica.Operations;
 
@@ -24,11 +25,11 @@ namespace ProyectoAnalitica.Controllers
         /// <returns>AnalisisH2ResultDto con arreglos estructurados para Scatter y Boxplot</returns>
         [HttpGet("hipotesis2")]
         [ProducesResponseType(typeof(AnalisisH2ResultDto), 200)]
-        public IActionResult GetAnalisisH2()
+        public IActionResult GetAnalisisH2([FromQuery] DateRangeDTO dateRange)
         {
             try
             {
-                var resultado = _hipotesisOperation.CalcularHipotesisH2();
+                var resultado = _hipotesisOperation.CalcularHipotesisH2(dateRange);
                 return Ok(resultado);
             }
             catch (System.Exception ex)
