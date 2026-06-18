@@ -10,32 +10,61 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2.0.1/dist/chartjs-chart-matrix.min.js"></script>
 
     <script defer>
-        async function cargarGraficoHipotesis4() {
+        let bubbleChart = null;
+        let matrixChart = null;
+
+        async function cargarGraficoHipotesis4(fechaInicio, fechaFin) {
             try {
-                // Petición al controlador expuesto de la Hipótesis 4
-                const respuesta = await fetch('/api/CuartaHipotesis/hipotesis4');
+                let url = '/api/CuartaHipotesis/hipotesis4';
+
+                if (fechaInicio && fechaFin) {
+                    url += `?Desde=${fechaInicio}&Hasta=${fechaFin}`;
+                }
+
+                const respuesta = await fetch(url);
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
                 const datosAnaliticos = await respuesta.json();
 
-                // 1. Renderizar Métricas de Resumen de Regresión y Conclusión
-                document.getElementById("txtIntercept").innerText = `Intercepto (α): ${datosAnaliticos.Intercept}`;
-                document.getElementById("txtCoeficientes").innerText = `Coeficientes: Rating (β1) = ${datosAnaliticos.CoeficienteRating} | Precio (β2) = ${datosAnaliticos.CoeficientePrecio}`;
-                document.getElementById("txtFormula").innerText = `Ecuación: Progreso = ${datosAnaliticos.Intercept} + (${datosAnaliticos.CoeficienteRating} * Rating) + (${datosAnaliticos.CoeficientePrecio} * Precio)`;
-                document.getElementById("txtR2").innerText = `Coeficiente de Determinación R²: ${datosAnaliticos.RCuadrado}`;
-                document.getElementById("txtConclusion").innerText = `Conclusión: ${datosAnaliticos.Conclusion}`;
+                // ==========================
+                // MÉTRICAS
+                // ==========================
+                document.getElementById("txtIntercept").innerText =
+                    `Intercepto (α): ${datosAnaliticos.Intercept}`;
 
-                // ==========================================
-                // 2. CONFIGURACIÓN DEL GRÁFICO DE BURBUJAS (REGRESIÓN MULTIVARIABLE)
-                // ==========================================
-                const ctxBubble = document.getElementById('bubbleChart').getContext('2d');
-                
-                // Mapeamos los datos respetando las minúsculas del DTO JSON de .NET: { x: precio, y: progreso, r: rating }
-                const bubblePoints = datosAnaliticos.BubbleData.map(p => ({
-                    x: p.x,
-                    y: p.y,
-                    r: p.r // El radio ya viene escalado en el backend para una visualización óptima
-                }));
+                document.getElementById("txtCoeficientes").innerText =
+                    `Coeficientes: Rating (β1) = ${datosAnaliticos.CoeficienteRating} | Precio (β2) = ${datosAnaliticos.CoeficientePrecio}`;
 
-                new Chart(ctxBubble, {
+                document.getElementById("txtFormula").innerText =
+                    `Ecuación: Progreso = ${datosAnaliticos.Intercept} + (${datosAnaliticos.CoeficienteRating} * Rating) + (${datosAnaliticos.CoeficientePrecio} * Precio)`;
+
+                document.getElementById("txtR2").innerText =
+                    `Coeficiente de Determinación R²: ${datosAnaliticos.RCuadrado}`;
+
+                document.getElementById("txtConclusion").innerText =
+                    `Conclusión: ${datosAnaliticos.Conclusion}`;
+
+                // ==========================
+                // GRÁFICO DE BURBUJAS
+                // ==========================
+                const ctxBubble =
+                    document.getElementById('bubbleChart').getContext('2d');
+
+                const bubblePoints =
+                    datosAnaliticos.BubbleData.map(p => ({
+                        x: p.x,
+                        y: p.y,
+                        r: p.r
+                    }));
+
+                if (bubbleChart) {
+                    bubbleChart.destroy();
+                }
+
+                bubbleChart = new Chart(ctxBubble, {
                     type: 'bubble',
                     data: {
                         datasets: [{
@@ -49,13 +78,17 @@
                     options: {
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Regresión: Impacto de Precio y Valoraciones en el Progreso' },
+                            title: {
+                                display: true,
+                                text: 'Regresión: Impacto de Precio y Valoraciones en el Progreso'
+                            },
                             tooltip: {
                                 callbacks: {
-                                    label: function(context) {
-                                        let p = context.raw;
-                                        // Recuperamos el rating original deshaciendo el escalado (r / 4)
-                                        let ratingOriginal = (p.r / 4).toFixed(2);
+                                    label(context) {
+                                        const p = context.raw;
+                                        const ratingOriginal =
+                                            (p.r / 4).toFixed(2);
+
                                         return `Precio: $${p.x} | Progreso: ${p.y}% | Rating: ${ratingOriginal}⭐`;
                                     }
                                 }
@@ -63,10 +96,16 @@
                         },
                         scales: {
                             x: {
-                                title: { display: true, text: 'Precio Base del Curso ($)' }
+                                title: {
+                                    display: true,
+                                    text: 'Precio Base del Curso ($)'
+                                }
                             },
                             y: {
-                                title: { display: true, text: 'Progreso Final Estudiantil (%)' },
+                                title: {
+                                    display: true,
+                                    text: 'Progreso Final Estudiantil (%)'
+                                },
                                 min: 0,
                                 max: 100
                             }
@@ -74,55 +113,71 @@
                     }
                 });
 
-                // ==========================================
-                // 3. CONFIGURACIÓN DE LA MATRIZ / MAPA DE CALOR (CORRELACIÓN)
-                // ==========================================
-                const ctxMatrix = document.getElementById('matrixChart').getContext('2d');
+                // ==========================
+                // MATRIZ DE CORRELACIÓN
+                // ==========================
+                const ctxMatrix =
+                    document.getElementById('matrixChart').getContext('2d');
 
-                new Chart(ctxMatrix, {
+                if (matrixChart) {
+                    matrixChart.destroy();
+                }
+
+                matrixChart = new Chart(ctxMatrix, {
                     type: 'matrix',
                     data: {
                         datasets: [{
                             label: 'Matriz de Correlación de Pearson',
                             data: datosAnaliticos.CorrelationMatrix,
                             backgroundColor(context) {
-                                if (!context.dataset.data[context.dataIndex]) return 'transparent';
-                                const item = context.dataset.data[context.dataIndex];
-                                const v = item.v; // Valor del coeficiente entre -1 y 1
-                                
-                                // Determinar la intensidad (Alfa) en base al valor absoluto de la correlación
-                                const alpha = Math.abs(v);
-                                
-                                // Azul para correlaciones positivas, Rojo para negativas
-                                return v >= 0 ? `rgba(46, 204, 113, ${alpha})` : `rgba(231, 76, 60, ${alpha})`;
+                                const item =
+                                    context.dataset.data[context.dataIndex];
+
+                                if (!item) {
+                                    return 'transparent';
+                                }
+
+                                const alpha = Math.abs(item.v);
+
+                                return item.v >= 0
+                                    ? `rgba(46, 204, 113, ${alpha})`
+                                    : `rgba(231, 76, 60, ${alpha})`;
                             },
                             borderColor: 'rgba(220, 220, 220, 1)',
                             borderWidth: 1,
-                            // Dimensionamiento dinámico de las celdas en la cuadrícula de 3x3
-                            width: ({ chart }) => chart.chartArea ? chart.chartArea.width / 3 - 2 : 0,
-                            height: ({ chart }) => chart.chartArea ? chart.chartArea.height / 3 - 2 : 0
+                            width: ({ chart }) =>
+                                chart.chartArea
+                                    ? chart.chartArea.width / 3 - 2
+                                    : 0,
+                            height: ({ chart }) =>
+                                chart.chartArea
+                                    ? chart.chartArea.height / 3 - 2
+                                    : 0
                         }]
                     },
                     options: {
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Matriz de Correlación Cruzada (Pearson)' },
+                            title: {
+                                display: true,
+                                text: 'Matriz de Correlación Cruzada (Pearson)'
+                            },
                             tooltip: {
                                 callbacks: {
-                                    label: (context) => `Variables: ${context.raw.x} x ${context.raw.y} | Coeficiente: ${context.raw.v}`
+                                    label(context) {
+                                        return `Variables: ${context.raw.x} x ${context.raw.y} | Coeficiente: ${context.raw.v}`;
+                                    }
                                 }
                             }
                         },
                         scales: {
                             x: {
                                 type: 'category',
-                                labels: ['Precio', 'Rating', 'Progreso'],
-                                ticks: { display: true }
+                                labels: ['Precio', 'Rating', 'Progreso']
                             },
                             y: {
                                 type: 'category',
                                 labels: ['Precio', 'Rating', 'Progreso'],
-                                ticks: { display: true },
                                 offset: true
                             }
                         }
@@ -130,13 +185,15 @@
                 });
 
             } catch (error) {
-                console.error("Error al cargar la analítica de la Hipótesis 4:", error);
-                document.getElementById("txtConclusion").innerText = "Error al conectar con la API de analítica.";
+                console.error(
+                    "Error al cargar la analítica de la Hipótesis 4:",
+                    error
+                );
+
+                document.getElementById("txtConclusion").innerText =
+                    "Error al conectar con la API de analítica.";
             }
         }
-
-        // Inicializar el flujo al cargar el DOM
-        cargarGraficoHipotesis4();
     </script>
 
     <link rel="stylesheet" href="../style.css">
@@ -148,6 +205,28 @@
         <p><em>"Los cursos con mayores valoraciones promedio presentan mayores porcentajes de progreso estudiantil."</em></p>
         <p>Tipos de prueba: Correlación / Regresión</p>
         
+        <div class="date-panel">
+        <div>
+            <p>Desde</p>
+            <input
+                type="date"
+                id="fecha-inicio"
+                name="desde"
+                value="2026-01-01">
+        </div>
+
+        <div>
+            <p>Hasta</p>
+            <input
+                type="date"
+                id="fecha-fin"
+                name="hasta"
+                value="2026-01-31">
+        </div>
+
+        <button id="filter-btn">Filtrar</button>
+    </div>
+
         <div class="metrics-panel">
             <h2>Resultados</h2>
             <p id="txtIntercept" class="numericValue"></p>
@@ -170,6 +249,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const filterButton = document.getElementById("filter-btn");
+
+        filterButton.addEventListener("click", () => {
+            const fechaInicio =
+                document.getElementById("fecha-inicio").value;
+
+            const fechaFin =
+                document.getElementById("fecha-fin").value;
+
+            cargarGraficoHipotesis4(fechaInicio, fechaFin);
+        });
+
+        // Carga inicial usando las fechas por defecto del backend
+        cargarGraficoHipotesis4();
+    </script>
 </body>
 
 </html>

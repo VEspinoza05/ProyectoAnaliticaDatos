@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Operations.DTOs;
 using ProyectoAnalitica.Operations;
 
 namespace UdemyAnalitica.Controllers
@@ -15,11 +16,12 @@ namespace UdemyAnalitica.Controllers
         }
 
         [HttpGet("hipotesis4")]
-        public IActionResult GetHipotesis4()
+        public IActionResult GetHipotesis4([FromQuery]DateRangeDTOForFactVI dateRange)
         {
             try
             {
-                var response = _operation.CalcularHipotesis4();
+                var parsedDateRangeDTO = dateRange.ToNumericDateRangeDTOFromFactVI();
+                var response = _operation.CalcularHipotesis4(parsedDateRangeDTO);
                 return Ok(response);
             }
             catch (System.Exception ex)

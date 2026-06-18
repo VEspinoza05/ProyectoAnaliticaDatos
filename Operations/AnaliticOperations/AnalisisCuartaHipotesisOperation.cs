@@ -3,6 +3,7 @@ using MathNet.Numerics.LinearRegression;
 using MathNet.Numerics.Statistics;
 using Operations.SyntheticDataGenerator;
 using ProyectoAnalitica.Dtos;
+using Operations.DTOs;
 
 namespace ProyectoAnalitica.Operations
 {
@@ -15,12 +16,13 @@ namespace ProyectoAnalitica.Operations
             _context = context;
         }
 
-        public AnalisisH4ResultDto CalcularHipotesis4()
+        public AnalisisH4ResultDto CalcularHipotesis4(NumericDateRangeDTO numericDateRangeDTO)
         {
             var resultado = new AnalisisH4ResultDto();
 
             // 1. Extraer los datos uniendo la tabla de hechos con la dimensión curso
             var datosBase = _context.FactVentasInscripciones
+                .Where(x => x.IdTiempo >= numericDateRangeDTO.Desde && x.IdTiempo <= numericDateRangeDTO.Hasta)
                 .Include(f => f.Curso)
                 .Select(f => new
                 {
