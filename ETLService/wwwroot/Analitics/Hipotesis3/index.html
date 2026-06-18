@@ -10,28 +10,57 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-error-bars@4.4.1/build/index.umd.min.js"></script>
 
     <script defer>
-        async function cargarGraficoHipotesis3() {
+        let chiSquareChart = null;
+        let regressionChart = null;
+
+        async function cargarGraficoHipotesis3(fechaInicio, fechaFin) {
             try {
-                // Petición al endpoint expuesto por tu controlador en C# para la Hipótesis 3
-                const respuesta = await fetch('/api/ApiAnallitic/hipotesis-h3');
+                let url = '/api/ApiAnallitic/hipotesis-h3';
+
+                if (fechaInicio && fechaFin) {
+                    url += `?Desde=${fechaInicio}&Hasta=${fechaFin}`;
+                }
+
+                const respuesta = await fetch(url);
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
                 const datosAnaliticos = await respuesta.json();
 
-                // 1. Renderizar Métricas de Resumen e Interpretación del Servidor
-                document.getElementById("txtChiCuadrado").innerText = `Estadístico Chi-Cuadrado: ${datosAnaliticos.ChiCuadradoEstadistico}`;
-                document.getElementById("txtPValueChi").innerText = `Valor p (Chi²): ${datosAnaliticos.PValorChiCuadrado}`;
-                document.getElementById("txtInterpretacion").innerText = `Interpretación: ${datosAnaliticos.Conclusion}`;
+                // ==========================
+                // MÉTRICAS
+                // ==========================
+                document.getElementById("txtChiCuadrado").innerText =
+                    `Estadístico Chi-Cuadrado: ${datosAnaliticos.ChiCuadradoEstadistico}`;
 
-                // ==========================================
-                // 2. GRÁFICO DE BARRAS AGRUPADAS (CHI-CUADRADO)
-                // ==========================================
-                const ctxChi = document.getElementById('chiSquareChart').getContext('2d');
-                
-                // Mapeamos los datos categóricos de la tabla de contingencia
-                const etiquetasDispositivos = datosAnaliticos.DatosChiCuadrado.map(d => d.Dispositivo);
-                const porcentajesFinalizo = datosAnaliticos.DatosChiCuadrado.map(d => d.PorcentajeFinalizo);
-                const porcentajesAbandono = datosAnaliticos.DatosChiCuadrado.map(d => d.PorcentajeAbandono);
+                document.getElementById("txtPValueChi").innerText =
+                    `Valor p (Chi²): ${datosAnaliticos.PValorChiCuadrado}`;
 
-                new Chart(ctxChi, {
+                document.getElementById("txtInterpretacion").innerText =
+                    `Interpretación: ${datosAnaliticos.Conclusion}`;
+
+                // ==========================
+                // CHI-CUADRADO
+                // ==========================
+                const ctxChi =
+                    document.getElementById('chiSquareChart').getContext('2d');
+
+                const etiquetasDispositivos =
+                    datosAnaliticos.DatosChiCuadrado.map(d => d.Dispositivo);
+
+                const porcentajesFinalizo =
+                    datosAnaliticos.DatosChiCuadrado.map(d => d.PorcentajeFinalizo);
+
+                const porcentajesAbandono =
+                    datosAnaliticos.DatosChiCuadrado.map(d => d.PorcentajeAbandono);
+
+                if (chiSquareChart) {
+                    chiSquareChart.destroy();
+                }
+
+                chiSquareChart = new Chart(ctxChi, {
                     type: 'bar',
                     data: {
                         labels: etiquetasDispositivos,
@@ -39,14 +68,14 @@
                             {
                                 label: '% Finalizó el Curso',
                                 data: porcentajesFinalizo,
-                                backgroundColor: 'rgba(46, 204, 113, 0.75)', // Verde Soft
+                                backgroundColor: 'rgba(46, 204, 113, 0.75)',
                                 borderColor: 'rgba(46, 204, 113, 1)',
                                 borderWidth: 1
                             },
                             {
                                 label: '% Abandonó el Curso',
                                 data: porcentajesAbandono,
-                                backgroundColor: 'rgba(231, 76, 60, 0.75)', // Rojo Soft
+                                backgroundColor: 'rgba(231, 76, 60, 0.75)',
                                 borderColor: 'rgba(231, 76, 60, 1)',
                                 borderWidth: 1
                             }
@@ -55,13 +84,27 @@
                     options: {
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Proporciones de Éxito Académico según Dispositivo de Acceso' },
-                            legend: { display: true, position: 'top' }
+                            title: {
+                                display: true,
+                                text: 'Proporciones de Éxito Académico según Dispositivo de Acceso'
+                            },
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            }
                         },
                         scales: {
-                            x: { title: { display: true, text: 'Tipo de Dispositivo Utilizado' } },
-                            y: { 
-                                title: { display: true, text: 'Porcentaje (%)' },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Tipo de Dispositivo Utilizado'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Porcentaje (%)'
+                                },
                                 min: 0,
                                 max: 100
                             }
@@ -69,50 +112,57 @@
                     }
                 });
 
-                // ==========================================
-                // 3. GRÁFICO DE BARRAS DE COEFICIENTES / ODDS RATIOS (REGRESIÓN)
-                // ==========================================
-                const ctxRegresion = document.getElementById('regressionChart').getContext('2d');
+                // ==========================
+                // REGRESIÓN
+                // ==========================
+                const ctxRegresion =
+                    document.getElementById('regressionChart').getContext('2d');
 
-                // Mapeamos las etiquetas de las variables codificadas por ML.NET
-                const etiquetasVariables = datosAnaliticos.DatosRegresion.map(r => r.Variable);
-                
-                /* Formato requerido por 'chartjs-chart-error-bars' para barras de error horizontales:
-                  El eje X evaluará el valor central (y), y los límites del error (yMin, yMax).
-                */
-                const datosConError = datosAnaliticos.DatosRegresion.map(r => ({
-                    x: r.OddsRatio,
-                    xMin: r.IntervaloConfianzaInferior,
-                    xMax: r.IntervaloConfianzaSuperior
-                }));
+                const etiquetasVariables =
+                    datosAnaliticos.DatosRegresion.map(r => r.Variable);
 
-                console.log(Chart.registry.controllers);
-  
-                new Chart(ctxRegresion, {
-                    type: 'barWithErrorBars', // Tipo especializado del plugin cargado por CDN
+                const datosConError =
+                    datosAnaliticos.DatosRegresion.map(r => ({
+                        x: r.OddsRatio,
+                        xMin: r.IntervaloConfianzaInferior,
+                        xMax: r.IntervaloConfianzaSuperior
+                    }));
+
+                if (regressionChart) {
+                    regressionChart.destroy();
+                }
+
+                regressionChart = new Chart(ctxRegresion, {
+                    type: 'barWithErrorBars',
                     data: {
                         labels: etiquetasVariables,
                         datasets: [{
                             label: 'Odds Ratio (Efecto del Riesgo)',
                             data: datosConError,
-                            backgroundColor: 'rgba(52, 152, 219, 0.65)', // Azul
+                            backgroundColor: 'rgba(52, 152, 219, 0.65)',
                             borderColor: 'rgba(52, 152, 219, 1)',
                             borderWidth: 1.5,
-                            errorBarColor: 'rgba(44, 62, 80, 1)', // Color del bigote del intervalo
+                            errorBarColor: 'rgba(44, 62, 80, 1)',
                             errorBarWhiskerLineWidth: 2,
                             errorBarWhiskerSize: 10
                         }]
                     },
                     options: {
-                        indexAxis: 'y', // Fuerza a que el gráfico de barras sea HORIZONTAL
+                        indexAxis: 'y',
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Odds Ratios e Intervalos de Confianza del 95%' },
-                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Odds Ratios e Intervalos de Confianza del 95%'
+                            },
+                            legend: {
+                                display: false
+                            },
                             tooltip: {
                                 callbacks: {
-                                    label: function(context) {
-                                        let raw = context.raw;
+                                    label(context) {
+                                        const raw = context.raw;
+
                                         return ` Odds Ratio: ${raw.x} (IC 95%: [${raw.xMin} - ${raw.xMax}])`;
                                     }
                                 }
@@ -120,23 +170,32 @@
                         },
                         scales: {
                             x: {
-                                title: { display: true, text: 'Odds Ratio (Línea de referencia = 1.0)' },
-                                // El valor 1.0 indica un efecto neutro. Valores > 1 indican mayor probabilidad de completar
+                                title: {
+                                    display: true,
+                                    text: 'Odds Ratio (Línea de referencia = 1.0)'
+                                },
                                 suggestedMin: 0
                             },
-                            y: { title: { display: true, text: 'Características del Dispositivo' } }
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Características del Dispositivo'
+                                }
+                            }
                         }
                     }
                 });
 
             } catch (error) {
-                console.error("Error al cargar la analítica de la Hipótesis 3:", error);
-                document.getElementById("txtInterpretacion").innerText = "Error crítico de conexión o formato con la API de analítica.";
+                console.error(
+                    "Error al cargar la analítica de la Hipótesis 3:",
+                    error
+                );
+
+                document.getElementById("txtInterpretacion").innerText =
+                    "Error crítico de conexión o formato con la API de analítica.";
             }
         }
-
-        // Se ejecuta automáticamente al renderizarse el DOM
-        window.onload = cargarGraficoHipotesis3;
     </script>
 
     <link rel="stylesheet" href="../style.css">
@@ -148,6 +207,26 @@
         <p><em>"Los estudiantes que acceden principalmente desde dispositivos móviles presentan menores tasas de finalización que aquellos que utilizan computadoras."</em></p>
         <p>Tipos de prueba: Chi-cuadrado / Regresión</p>
         
+        <div class="date-panel">
+            <div>
+                <p>Desde</p>
+                <input type="date"
+                    id="fecha-inicio"
+                    name="desde"
+                    value="2026-01-01">
+            </div>
+
+            <div>
+                <p>Hasta</p>
+                <input type="date"
+                    id="fecha-fin"
+                    name="hasta"
+                    value="2026-01-31">
+            </div>
+
+            <button id="filter-btn">Filtrar</button>
+        </div>
+
         <div class="metrics-panel">
             <h2>Resultados</h2>
             <p id="txtChiCuadrado" class="numericValue"></p>
@@ -166,6 +245,22 @@
             <canvas id="regressionChart" width="800" height="400"></canvas>
         </div>
     </div>
+    <script>
+        const filterButton = document.getElementById("filter-btn");
+
+        filterButton.addEventListener("click", () => {
+            const fechaInicio =
+                document.getElementById("fecha-inicio").value;
+
+            const fechaFin =
+                document.getElementById("fecha-fin").value;
+
+            cargarGraficoHipotesis3(fechaInicio, fechaFin);
+        });
+
+        // Carga inicial sin parámetros
+        cargarGraficoHipotesis3();
+    </script>
 </body>
 
 </html>

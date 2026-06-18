@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProyectoAnalitica.Operations;
 using ProyectoAnalitica.Dtos;
+using Operations.DTOs;
 
 namespace ProyectoAnalitica.Controllers
 {
@@ -16,11 +17,12 @@ namespace ProyectoAnalitica.Controllers
         }
 
         [HttpGet("hipotesis-h3")]
-        public async Task<ActionResult<AnalisisH3ResultDto>> GetAnalisisH3()
+        public async Task<ActionResult<AnalisisH3ResultDto>> GetAnalisisH3([FromQuery]DateRangeDTOForFactVI dateRange)
         {
             try
             {
-                var resultado = await _analisisH3Operation.CalcularHipotesisH3Async();
+                var parsedDateRangeDTO = dateRange.ToNumericDateRangeDTOFromFactVI();
+                var resultado = await _analisisH3Operation.CalcularHipotesisH3Async(parsedDateRangeDTO);
                 return Ok(resultado);
             }
             catch (Exception ex)

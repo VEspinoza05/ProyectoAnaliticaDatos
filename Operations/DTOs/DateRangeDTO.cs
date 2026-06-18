@@ -12,6 +12,12 @@ namespace Operations.DTOs
         public DateTime Hasta { get; set; } = new DateTime(2026, 3, 31);
     }
 
+    public class DateRangeDTOForFactVI
+    {
+        public DateTime Desde { get; set; } = new DateTime(2026, 1, 1);
+        public DateTime Hasta { get; set; } = new DateTime(2026, 1, 31);
+    }
+
     public class NumericDateRangeDTO
     {
         public int Desde { get; set; }
@@ -21,6 +27,15 @@ namespace Operations.DTOs
     public static class DateRangeDTOParser
     {
         public static NumericDateRangeDTO ToNumericDateRangeDTO(this DateRangeDTO dateRangeDTO)
+        {
+            return new NumericDateRangeDTO
+            {
+              Desde = int.Parse(dateRangeDTO.Desde.ToString("yyyyMMdd")),
+              Hasta  = int.Parse(dateRangeDTO.Hasta.ToString("yyyyMMdd"))
+            };
+        }
+
+        public static NumericDateRangeDTO ToNumericDateRangeDTOFromFactVI(this DateRangeDTOForFactVI dateRangeDTO)
         {
             return new NumericDateRangeDTO
             {

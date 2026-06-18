@@ -6,6 +6,7 @@ using ProyectoAnalitica.Dtos;
 using Microsoft.ML.Trainers;
 using Microsoft.ML.Calibrators;
 using Operations.SyntheticDataGenerator;
+using Operations.DTOs;
 
 namespace ProyectoAnalitica.Operations
 {
@@ -25,12 +26,13 @@ namespace ProyectoAnalitica.Operations
             public bool Completado { get; set; }
         }
 
-        public async Task<AnalisisH3ResultDto> CalcularHipotesisH3Async()
+        public async Task<AnalisisH3ResultDto> CalcularHipotesisH3Async(NumericDateRangeDTO numericDateRangeDTO)
         {
             var resultado = new AnalisisH3ResultDto();
 
             // 1. Obtener datos limpios desde el Data Warehouse
             var datosBase = await _context.FactVentasInscripciones
+                .Where(x => x.IdTiempo >= numericDateRangeDTO.Desde && x.IdTiempo <= numericDateRangeDTO.Hasta)
                 .Include(f => f.Dispositivo)
                 .Where(f => f.Dispositivo != null)
                 .Select(f => new DatosInscripcionML
