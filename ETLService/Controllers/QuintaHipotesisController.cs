@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Operations.DTOs;
 using ProyectoAnalitica.Dtos;
 using ProyectoAnalitica.Operations;
 
@@ -16,11 +17,12 @@ namespace UdemyAnalitics.Controllers
         }
 
         [HttpGet("hipotesis-h5")]
-        public ActionResult<AnalisisH5ResultDto> GetAnalisisH5()
+        public ActionResult<AnalisisH5ResultDto> GetAnalisisH5([FromQuery]DateRangeDTOForFactVI dateRange)
         {
             try
             {
-                var resultado = _hipotesisOperation.CalcularHipotesisH5();
+                var parsedDateRangeDTO = dateRange.ToNumericDateRangeDTOFromFactVI();
+                var resultado = _hipotesisOperation.CalcularHipotesisH5(parsedDateRangeDTO);
                 return Ok(resultado);
             }
             catch (System.Exception ex)

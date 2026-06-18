@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MathNet.Numerics.Distributions; // Requiere el paquete MathNet.Numerics
 using Operations.SyntheticDataGenerator;
 using ProyectoAnalitica.Dtos;
+using Operations.DTOs;
 
 namespace ProyectoAnalitica.Operations
 {
@@ -17,10 +18,11 @@ namespace ProyectoAnalitica.Operations
             _context = context;
         }
 
-        public AnalisisH5ResultDto CalcularHipotesisH5()
+        public AnalisisH5ResultDto CalcularHipotesisH5(NumericDateRangeDTO numericDateRangeDTO)
         {
             // 1. Obtener los datos base desde la tabla de hechos principal para H5
             var registrosVentas = _context.FactVentasInscripciones
+                .Where(x => x.IdTiempo >= numericDateRangeDTO.Desde && x.IdTiempo <= numericDateRangeDTO.Hasta)
                 .Include(f => f.Promocion)
                 .Include(f => f.Tiempo)
                 .Select(f => new

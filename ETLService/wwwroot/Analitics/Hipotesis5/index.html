@@ -10,45 +10,71 @@
     <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.5/build/index.umd.min.js"></script>
 
     <script defer>
-        async function cargarGraficoHipotesis5() {
+        let violinChart = null;
+        let lineChart = null;
+
+        async function cargarGraficoHipotesis5(fechaInicio, fechaFin) {
             try {
-                // Petición al endpoint expuesto del controlador ApiAnaliticController
-                const respuesta = await fetch('/api/QuintaHipotesis/hipotesis-h5');
+                let url = '/api/QuintaHipotesis/hipotesis-h5';
+
+                if (fechaInicio && fechaFin) {
+                    url += `?Desde=${fechaInicio}&Hasta=${fechaFin}`;
+                }
+
+                const respuesta = await fetch(url);
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
                 const datosAnaliticos = await respuesta.json();
 
-                // 1. Renderizar Métricas de Resumen Estadístico (ANOVA de una vía)
-                document.getElementById("txtPromedioPromo").innerText = `Progreso Medio (Con Promoción): ${datosAnaliticos.AnovaResult.PromedioConPromocion.toFixed(2)}%`;
-                document.getElementById("txtPromedioRegular").innerText = `Progreso Medio (Precio Regular): ${datosAnaliticos.AnovaResult.PromedioPrecioRegular.toFixed(2)}%`;
-                document.getElementById("txtAnovaF").innerText = `Estadístico F calculado: ${datosAnaliticos.AnovaResult.FStat.toFixed(4)}`;
-                document.getElementById("txtPValue").innerText = `Valor p: ${datosAnaliticos.AnovaResult.PValue.toExponential(4)}`;
-                
-                const conclusionElement = document.getElementById("txtConclusion");
-                conclusionElement.innerText = `Conclusión: ${datosAnaliticos.AnovaResult.Conclusion}`;
+                // ==========================
+                // MÉTRICAS
+                // ==========================
+                document.getElementById("txtPromedioPromo").innerText =
+                    `Progreso Medio (Con Promoción): ${datosAnaliticos.AnovaResult.PromedioConPromocion.toFixed(2)}%`;
 
-                // ==========================================
-                // 2. CONFIGURACIÓN DEL GRÁFICO DE VIOLÍN / DENSIDAD
-                // ==========================================
-                const ctxViolin = document.getElementById('violinChart').getContext('2d');
-                
-                // Agrupamos el set de datos en los dos vectores que procesa el plugin de violín
+                document.getElementById("txtPromedioRegular").innerText =
+                    `Progreso Medio (Precio Regular): ${datosAnaliticos.AnovaResult.PromedioPrecioRegular.toFixed(2)}%`;
+
+                document.getElementById("txtAnovaF").innerText =
+                    `Estadístico F calculado: ${datosAnaliticos.AnovaResult.FStat.toFixed(4)}`;
+
+                document.getElementById("txtPValue").innerText =
+                    `Valor p: ${datosAnaliticos.AnovaResult.PValue.toExponential(4)}`;
+
+                document.getElementById("txtConclusion").innerText =
+                    `Conclusión: ${datosAnaliticos.AnovaResult.Conclusion}`;
+
+                // ==========================
+                // GRÁFICO DE VIOLÍN
+                // ==========================
+                const ctxViolin =
+                    document.getElementById('violinChart').getContext('2d');
+
                 const muestrasPromo = datosAnaliticos.DatosDensidad
                     .filter(d => d.Grupo === "Con Promoción")
                     .map(d => d.Progreso);
-                    
+
                 const muestrasRegular = datosAnaliticos.DatosDensidad
                     .filter(d => d.Grupo === "Precio Regular")
                     .map(d => d.Progreso);
 
-                new Chart(ctxViolin, {
-                    type: 'violin', // Tipo habilitado por el plugin complementario
+                if (violinChart) {
+                    violinChart.destroy();
+                }
+
+                violinChart = new Chart(ctxViolin, {
+                    type: 'violin',
                     data: {
                         labels: ['Con Descuento', 'Precio Regular'],
                         datasets: [{
                             label: 'Distribución y Densidad del Progreso %',
-                            data: [muestrasPromo, muestrasRegular], // El plugin computa la densidad Kernel internamente
+                            data: [muestrasPromo, muestrasRegular],
                             backgroundColor: [
-                                'rgba(231, 76, 60, 0.5)',  // Rojo suave para promoción
-                                'rgba(46, 204, 113, 0.5)'  // Verde suave para precio regular
+                                'rgba(231, 76, 60, 0.5)',
+                                'rgba(46, 204, 113, 0.5)'
                             ],
                             borderColor: [
                                 'rgba(231, 76, 60, 1)',
@@ -61,15 +87,26 @@
                     options: {
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Gráfico de Violín: Comparativa de la Forma de Distribución del Progreso' },
-                            legend: { display: false }
+                            title: {
+                                display: true,
+                                text: 'Gráfico de Violín: Comparativa de la Forma de Distribución del Progreso'
+                            },
+                            legend: {
+                                display: false
+                            }
                         },
                         scales: {
                             x: {
-                                title: { display: true, text: 'Condición de Adquisición (compra_promocion)' }
+                                title: {
+                                    display: true,
+                                    text: 'Condición de Adquisición (compra_promocion)'
+                                }
                             },
                             y: {
-                                title: { display: true, text: 'Progreso Final Obtenido (%)' },
+                                title: {
+                                    display: true,
+                                    text: 'Progreso Final Obtenido (%)'
+                                },
                                 min: 0,
                                 max: 100
                             }
@@ -77,17 +114,30 @@
                     }
                 });
 
-                // ==========================================
-                // 3. CONFIGURACIÓN DEL GRÁFICO DE LÍNEAS DE TENDENCIA COMPARADAS
-                // ==========================================
-                const ctxLine = document.getElementById('lineChart').getContext('2d');
+                // ==========================
+                // GRÁFICO DE LÍNEAS
+                // ==========================
+                const ctxLine =
+                    document.getElementById('lineChart').getContext('2d');
 
-                // Mapeo de la línea de tiempo (dim_tiempo) para el eje X
-                const fechasLabels = datosAnaliticos.TendenciaTemporal.map(t => t.Fecha);
-                const seriePromo = datosAnaliticos.TendenciaTemporal.map(t => t.PromedioConPromocion);
-                const serieRegular = datosAnaliticos.TendenciaTemporal.map(t => t.PromedioPrecioRegular);
+                const fechasLabels =
+                    datosAnaliticos.TendenciaTemporal.map(t => t.Fecha);
 
-                new Chart(ctxLine, {
+                const seriePromo =
+                    datosAnaliticos.TendenciaTemporal.map(
+                        t => t.PromedioConPromocion
+                    );
+
+                const serieRegular =
+                    datosAnaliticos.TendenciaTemporal.map(
+                        t => t.PromedioPrecioRegular
+                    );
+
+                if (lineChart) {
+                    lineChart.destroy();
+                }
+
+                lineChart = new Chart(ctxLine, {
                     type: 'line',
                     data: {
                         labels: fechasLabels,
@@ -98,7 +148,7 @@
                                 borderColor: 'rgba(231, 76, 60, 1)',
                                 backgroundColor: 'rgba(231, 76, 60, 0.1)',
                                 borderWidth: 3,
-                                tension: 0.2, // Curvatura ligera y limpia para series temporales continuas
+                                tension: 0.2,
                                 fill: false
                             },
                             {
@@ -115,15 +165,26 @@
                     options: {
                         responsive: true,
                         plugins: {
-                            title: { display: true, text: 'Regresión Temporal: Progreso Acumulado Promedio en el Tiempo' }
+                            title: {
+                                display: true,
+                                text: 'Regresión Temporal: Progreso Acumulado Promedio en el Tiempo'
+                            }
                         },
                         scales: {
                             x: {
-                                title: { display: true, text: 'Línea de Tiempo Analítica (dim_tiempo)' },
-                                grid: { display: false } // Limpieza visual en el eje X
+                                title: {
+                                    display: true,
+                                    text: 'Línea de Tiempo Analítica (dim_tiempo)'
+                                },
+                                grid: {
+                                    display: false
+                                }
                             },
                             y: {
-                                title: { display: true, text: 'Progreso Promedio Acumulado (%)' },
+                                title: {
+                                    display: true,
+                                    text: 'Progreso Promedio Acumulado (%)'
+                                },
                                 min: 0,
                                 max: 100
                             }
@@ -132,13 +193,15 @@
                 });
 
             } catch (error) {
-                console.error("Error al cargar la analítica de la Hipótesis 5:", error);
-                document.getElementById("txtConclusion").innerText = "Error crítico de conexión al procesar los modelos analíticos en el servidor.";
+                console.error(
+                    "Error al cargar la analítica de la Hipótesis 5:",
+                    error
+                );
+
+                document.getElementById("txtConclusion").innerText =
+                    "Error crítico de conexión al procesar los modelos analíticos en el servidor.";
             }
         }
-
-        // Inicialización automatizada al instanciar el DOM
-        cargarGraficoHipotesis5();
     </script>
 
     <link rel="stylesheet" href="../style.css">
@@ -149,6 +212,28 @@
         <h1>Análisis de la Hipótesis 5 (H5)</h1>
         <p><em>"Los estudiantes que adquieren cursos durante promociones masivas presentan menor porcentaje de progreso promedio que quienes compran cursos fuera de promociones."</em></p>
         <p>Tipos de prueba: ANOVA / Regresión</p>
+
+        <div class="date-panel">
+            <div>
+                <p>Desde</p>
+                <input
+                    type="date"
+                    id="fecha-inicio"
+                    name="desde"
+                    value="2026-01-01">
+            </div>
+
+            <div>
+                <p>Hasta</p>
+                <input
+                    type="date"
+                    id="fecha-fin"
+                    name="hasta"
+                    value="2026-01-31">
+            </div>
+
+            <button id="filter-btn">Filtrar</button>
+        </div>
 
         <div class="metrics-panel">
             <h2>Resultados</h2>
@@ -170,6 +255,23 @@
             <canvas id="lineChart" width="800" height="400"></canvas>
         </div>
     </div>
+
+    <script>
+        const filterButton = document.getElementById("filter-btn");
+
+        filterButton.addEventListener("click", () => {
+            const fechaInicio =
+                document.getElementById("fecha-inicio").value;
+
+            const fechaFin =
+                document.getElementById("fecha-fin").value;
+
+            cargarGraficoHipotesis5(fechaInicio, fechaFin);
+        });
+
+        // Carga inicial usando las fechas por defecto del backend
+        cargarGraficoHipotesis5();
+    </script>
 </body>
 
 </html>
