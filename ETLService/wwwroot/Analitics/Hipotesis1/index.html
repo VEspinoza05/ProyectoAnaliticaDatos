@@ -18,6 +18,8 @@
             document.getElementById("txtCoeficienteDias").innerText = `Coeficiente Días: ${datosAnaliticos.CoeficienteDias}`;
             document.getElementById("txtIntercepto").innerText = `Intercepto: ${datosAnaliticos.Intercepto}`;
             document.getElementById("txtConclusion").innerText = datosAnaliticos.Conclusion;
+            document.getElementById("txtPorcentajeExitoGrupoSi").innerText = `% Exito de grupo que completó en semana 1: ${(datosAnaliticos.BarrasApiladas100["SiCompletó_Exito"] / (datosAnaliticos.BarrasApiladas100["SiCompletó_Exito"] + datosAnaliticos.BarrasApiladas100["SiCompletó_Abandono"]) * 100).toFixed(2)}%`;
+            document.getElementById("txtPorcentajeExitoGrupoNo").innerText = `% Exito de grupo que no completó en semana 1: ${(datosAnaliticos.BarrasApiladas100["NoCompletó_Exito"] / (datosAnaliticos.BarrasApiladas100["NoCompletó_Exito"] + datosAnaliticos.BarrasApiladas100["NoCompletó_Abandono"]) * 100).toFixed(2)}%`;
 
             // Configurar grafico sigmoide
             const ctx = document.getElementById('sigmoidChart').getContext('2d');
@@ -63,11 +65,11 @@
                     datasets: [{
                         label: 'Exito',
                         data: [datosAnaliticos.BarrasApiladas100["SiCompletó_Exito"],datosAnaliticos.BarrasApiladas100["NoCompletó_Exito"]],
-                        backgroundColor: 'red'
+                        backgroundColor: 'green'
                     }, {
                         label: 'Abandono',
                         data: [datosAnaliticos.BarrasApiladas100["SiCompletó_Abandono"],datosAnaliticos.BarrasApiladas100["NoCompletó_Abandono"]],
-                        backgroundColor: 'blue'
+                        backgroundColor: 'red'
                     }]
                 },
                 options: {
@@ -107,6 +109,8 @@
 
         <div class="chart-box">
             <canvas id="StackedBars" width="800" height="400"></canvas>
+            <p id="txtPorcentajeExitoGrupoSi" class="numericValue"></p>
+            <p id="txtPorcentajeExitoGrupoNo" class="numericValue"></p>
         </div>
     </div>
 </body>

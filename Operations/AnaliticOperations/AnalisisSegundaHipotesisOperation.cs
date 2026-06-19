@@ -149,19 +149,19 @@ namespace ProyectoAnalitica.Operations
 
             var categorias = new Dictionary<string, List<double>>
             {
-                { "Actividad Baja", new List<double>() },
-                { "Actividad Media", new List<double>() },
-                { "Actividad Alta", new List<double>() }
+                { "Tiempo de permanencia bajo", new List<double>() },
+                { "Tiempo de permanencia medio", new List<double>() },
+                { "Tiempo de permanencia alto", new List<double>() }
             };
 
             foreach (var item in datos)
             {
                 if (item.Actividad <= umbralBajo)
-                    categorias["Actividad Baja"].Add(item.Calificacion);
+                    categorias["Tiempo de permanencia bajo"].Add(item.Calificacion);
                 else if (item.Actividad <= umbralMedio)
-                    categorias["Actividad Media"].Add(item.Calificacion);
+                    categorias["Tiempo de permanencia medio"].Add(item.Calificacion);
                 else
-                    categorias["Actividad Alta"].Add(item.Calificacion);
+                    categorias["Tiempo de permanencia alto"].Add(item.Calificacion);
             }
 
             return categorias;
